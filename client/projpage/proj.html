@@ -1,0 +1,22 @@
+<template name="proj">
+	{{> navbar }}
+	<h1 class="headbox"> Ongoing projects at <b>{{schoolname}}</b></h1>
+	<div class="container">
+		{{#each projects}}
+		<div class="row midcard">
+			<div class="col s12 m6 offset-m3">
+				<div class="card teal lighten-2">
+					<div class="card-content white-text">
+						<span class="card-title"> {{project}} </span>
+						<p> {{descrip}} </p>
+					</div>
+					<div class="card-action">
+						<a href="#">{{github}}</a>
+						<a href="#">{{founder}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</template>
