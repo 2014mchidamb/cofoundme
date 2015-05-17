@@ -5,11 +5,11 @@ if (Meteor.isClient) {
       particles: {
         color: '#4db6ac',
         color_random: false,
-        shape: 'triangle', // "circle", "edge" or "triangle"
+        shape: 'circle', // "circle", "edge" or "triangle"
         opacity: {
           opacity: .8,
           anim: {
-            enable: true,
+            enable: false,
             speed: 3.5,
             opacity_min: 0,
             sync: false
@@ -21,7 +21,7 @@ if (Meteor.isClient) {
         line_linked: {
           enable_auto: true,
           distance: 100,
-          color: '#fff',
+          color: '#4db6ac',
           opacity: 1,
           width: 1,
           condensed_mode: {
