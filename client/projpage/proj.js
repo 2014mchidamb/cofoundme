@@ -4,3 +4,9 @@ Template.proj.helpers({
 		return Projects.find({school: schoolname}, {sort: {createdAt: -1}});
 	}
 });
+
+Meteor.startup(function () {
+	console.log('got here');
+	particlesJS('particles-js', {});
+});
+

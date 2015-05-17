@@ -5,3 +5,7 @@ Template.teamproj.events = {
     }
 }
 
+Meteor.startup(function () {
+	console.log('got here');
+    particlesJS('particles-js', {});
+});
