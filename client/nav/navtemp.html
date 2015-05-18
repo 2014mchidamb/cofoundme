@@ -1,9 +1,13 @@
 <template name="navbar">    
 	<nav>
         <div class="nav-wrapper teal lighten-2">
-            <a href="#" class="brand-logo right navpad">CoFoundMe</a>
+            <a id="logo" class="brand-logo right navpad">CoFoundMe</a>
             <ul id="nav-mobile" class="left hide-on-med-and-down navpad">
-                <li> {{> loginButtons }} </li>
+				{{#if currentUser}}
+					<li> <a id="signout" class="waves-effect waves-light btn">Sign Out</a> </li>
+				{{else}}
+					<li> <a id="signin" class="waves-effect waves-light btn">Sign In</a> </li>
+				{{/if}}
             </ul>
         </div>
     </nav>

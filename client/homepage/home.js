@@ -4,7 +4,6 @@ Template.home.events = {
 		Router.go('/'+document.getElementById('school').value);
 	}
 }
-
 Meteor.startup(function () {
 	console.log('got here');
 	particlesJS('particles-js', {});
