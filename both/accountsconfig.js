@@ -8,3 +8,17 @@ AccountsTemplates.configureRoute('signUp', {
 	path: '/users/signup',
 	layoutTemplate: 'accountsLayout',
 });
+AccountsTemplates.addFields([
+    {
+		_id: 'name',
+        type: 'text',
+		required: true,
+        displayName: "Name",
+    },
+    {
+		_id: 'school',
+        type: 'text',
+		required: true,
+        displayName: "School",
+    }
+]);
