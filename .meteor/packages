@@ -13,3 +13,4 @@ iron:router
 newswim:particles
 accounts-ui
 aldeed:autoform
+useraccounts:materialize
