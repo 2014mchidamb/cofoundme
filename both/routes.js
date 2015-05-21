@@ -19,4 +19,8 @@ Router.route("/:school/projects",
 		data: function() {
 			return {schoolname: this.params.school};
 		}});
-
+Router.route("/:school/coders",
+	{name: "coder",
+		data: function() {
+			return {schoolname: this.params.school};
+		}});
