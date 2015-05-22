@@ -1,0 +1,21 @@
+<template name="coder">
+	<h1 class="headbox"> Student talent at <b>{{schoolname}}</b></h1>
+	<div class="container">
+		{{#each coders}}
+		<div class="row midcard">
+			<div class="col s12 m6 offset-m3">
+				<div class="card teal lighten-2">
+					<div class="card-content white-text">
+						<span class="card-title"> {{profile.name}} </span>
+						<p> Profile text goes here. </p>
+					</div>
+					<div class="card-action">
+						<a href="#">Profile</a>
+						<a href="#">Contact</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</template>

@@ -1,7 +1,10 @@
 Template.teamproj.events = {
     'click #proj': function(event) {
         event.preventDefault();
-        Router.go(window.location.pathname+'/projects'); //change to get current url
-    }
+        Router.go(window.location.pathname+'/projects');
+    },
+	'click #team': function(event) {
+		event.preventDefault();
+		Router.go(window.location.pathname+'/coders');
+	}
 }
-

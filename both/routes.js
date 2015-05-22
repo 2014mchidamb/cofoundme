@@ -19,6 +19,7 @@ Router.route("/:school/projects",
 		data: function() {
 			return {schoolname: this.params.school};
 		}});
+
 Router.route("/project/new", {name: "insertProjectForm"});
 // Router.route("/createproject", function(){
 // 	this.render("insertProjectForm");
@@ -26,3 +27,9 @@ Router.route("/project/new", {name: "insertProjectForm"});
 
 
 
+
+Router.route("/:school/coders",
+	{name: "coder",
+		data: function() {
+			return {schoolname: this.params.school};
+		}});

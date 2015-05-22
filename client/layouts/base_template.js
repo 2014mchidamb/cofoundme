@@ -1,3 +1,11 @@
+
+
+Meteor.startup(function () {
+  console.log('got here');
+  particlesJS('particles-js', {});
+});
+
+
 if (Meteor.isClient) {
   Meteor.startup(function () {
 	console.log('got here');
@@ -65,4 +73,5 @@ if (Meteor.isClient) {
   });
 
 }
+
 
