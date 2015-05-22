@@ -10,5 +10,9 @@ Template.navbar.events = {
 	'click #signout': function(event) {
 		event.preventDefault();
 		Meteor.logout();
+	},
+	'click #createproject': function(event) {
+		event.preventDefault();
+		Router.go('/project/new');
 	}
-}
+};
