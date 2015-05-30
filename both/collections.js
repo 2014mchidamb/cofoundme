@@ -41,3 +41,21 @@ Projects.attachSchema(new SimpleSchema({
 		optional: true
 	}
 }));
+UserInfo = new Mongo.Collection("UserInfo");
+UserInfo.attachSchema(new SimpleSchema({
+	name: {
+		type: String,
+		label: "Name",
+		max: 100
+	},
+	school: {
+		type: String,
+		label: "School",
+		max: 100
+	},
+	desc: {
+		type: String,
+		label: "Experience",
+		max: 1000
+	}
+}));
