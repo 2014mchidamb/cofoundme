@@ -8,6 +8,9 @@ AccountsTemplates.configureRoute('signUp', {
 	path: '/users/signup',
 	layoutTemplate: 'accountsLayout',
 });
+AccountsTemplates.configureRoute('ensureSignedIn', {
+    layoutTemplate: 'accountsLayout',
+});
 AccountsTemplates.addFields([
     {
 		_id: 'name',

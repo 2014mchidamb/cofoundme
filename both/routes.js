@@ -26,11 +26,12 @@ Router.route("/profile/edit", {name: "editProfile"});
 // 	this.render("insertProjectForm");
 // });
 
-
-
-
 Router.route("/:school/coders",
 	{name: "coder",
 		data: function() {
 			return {schoolname: this.params.school};
 		}});
+
+Router.plugin('ensureSignedIn', {
+    only: ['insertProjectForm', 'editProfile']
+});
