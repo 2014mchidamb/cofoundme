@@ -11,8 +11,12 @@ Template.navbar.events = {
 		event.preventDefault();
 		Meteor.logout();
 	},
-	'click #createproject': function(event) {
+	'click #insertProjectForm': function(event) {
 		event.preventDefault();
 		Router.go('/project/new');
+	},
+	'click #profile': function(event) {
+		event.preventDefault();
+		Router.go('/profile/edit');
 	}
 };

@@ -21,6 +21,7 @@ Router.route("/:school/projects",
 		}});
 
 Router.route("/project/new", {name: "insertProjectForm"});
+Router.route("/profile/edit", {name: "editProfile"});
 // Router.route("/createproject", function(){
 // 	this.render("insertProjectForm");
 // });
