@@ -1,5 +1,27 @@
 <template name = "insertProjectForm">
-	<div class="container">
-		{{> quickForm collection="Projects" id="insertProjectForm" type="insert"}}
+	<h1 class="headbox"> New Project </h1> 
+	<div class="container" style="z-index:1;position:relative">
+		<!-- 	{{> quickForm collection="Projects" id="insertProjectForm" type="insert"}} -->
+		<form class="col s12">
+			<div class="row">
+				<div class = "input-field col s12">
+					<input id="project_name" type="text" class="validate">
+					<label for="project_name">Project Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class = "input-field col s12">
+					<textarea id="project_description" type="text" class="materialize-textarea"></textarea>
+					<label for="project_description">Project Description</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class = "input-field col s12">
+					<input id="school_name" type="text" class="validate"> <!-- TODO: add university autocomplete -->
+					<label for="school_name">School Name</label>
+				</div>
+			</div>
+			
+		</form>
 	</div>
 </template>
