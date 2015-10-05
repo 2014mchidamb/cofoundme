@@ -10,6 +10,14 @@
 	margin-bottom: 40px;
 }
 
+.formhead {
+	text-align: left;
+	color: #4db6ac;
+	margin-top: 40px;
+	margin-left: 140px;
+	background: rgba(255, 255, 255);
+}
+
 .head2box {
 	margin-left: 40px;
 	margin-right: 40px;
