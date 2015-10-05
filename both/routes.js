@@ -20,8 +20,8 @@ Router.route("/:school/projects",
 			return {schoolname: this.params.school};
 		}});
 
-Router.route("/project/new", {name: "insertProjectForm"});
-Router.route("/profile/edit", {name: "editProfile"});
+Router.route("/project/new", {name: "newProj"});
+Router.route("/profile/edit", {name: "editProf"});
 // Router.route("/createproject", function(){
 // 	this.render("insertProjectForm");
 // });
@@ -33,5 +33,5 @@ Router.route("/:school/coders",
 		}});
 
 Router.plugin('ensureSignedIn', {
-    only: ['insertProjectForm', 'editProfile']
+    only: ['newProj', 'editProf']
 });

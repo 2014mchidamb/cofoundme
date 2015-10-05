@@ -1,5 +1,5 @@
 Projects = new Mongo.Collection("projects");
-Projects.attachSchema(new SimpleSchema({
+/*Projects.attachSchema(new SimpleSchema({
 	name:{
 		type: String,
 		label: "Project Name",
@@ -40,9 +40,9 @@ Projects.attachSchema(new SimpleSchema({
 		label: "Date Project was Last Updated",
 		optional: true
 	}
-}));
+}));*/
 UserInfo = new Mongo.Collection("UserInfo");
-UserInfo.attachSchema(new SimpleSchema({
+/*UserInfo.attachSchema(new SimpleSchema({
 	name: {
 		type: String,
 		label: "Name",
@@ -58,4 +58,4 @@ UserInfo.attachSchema(new SimpleSchema({
 		label: "Experience",
 		max: 1000
 	}
-}));
+}));*/
