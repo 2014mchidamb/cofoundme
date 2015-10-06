@@ -11,7 +11,7 @@
 }
 
 .formhead {
-	text-align: left;
+	text-align: center;
 	color: #4db6ac;
 	margin-top: 40px;
 	margin-left: 140px;
@@ -44,6 +44,12 @@
 .waves-effect {
 	margin-left: 5px;
 	margin-right: 5px;
+}
+
+.white-container{
+	background: #FFFFFF; 
+	border: 1px solid #AEEBE5;
+	width:50%;
 }
 
 #particles-js {
