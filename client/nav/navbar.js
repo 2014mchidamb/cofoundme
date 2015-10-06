@@ -17,6 +17,6 @@ Template.navbar.events = {
 	},
 	'click #profile': function(event) {
 		event.preventDefault();
-		Router.go('/profile/edit');
+		Router.go('/profile/home');
 	}
 };
