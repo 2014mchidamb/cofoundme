@@ -41,7 +41,8 @@ Projects = new Mongo.Collection("projects");
 		optional: true
 	}
 }));*/
-UserInfo = new Mongo.Collection("UserInfo");
+//Users = new Mongo.Collection("users");
+
 /*UserInfo.attachSchema(new SimpleSchema({
 	name: {
 		type: String,
@@ -59,3 +60,20 @@ UserInfo = new Mongo.Collection("UserInfo");
 		max: 1000
 	}
 }));*/
+
+
+Meteor.methods({
+	//TODO: Add resume
+	editUser: function(name, school, experience) {
+		if(!Meteor.userId())
+			throw new Meteor.Error("not-authorized");
+		Meteor.users.update({_id:Meteor.user()._id},{
+			$set: {
+				profile:{name: name,
+					school: school,
+					desc: experience}
+			}
+		});
+	}
+
+});
