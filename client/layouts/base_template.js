@@ -1,13 +1,9 @@
 
 
-Meteor.startup(function () {
-  console.log('got here');
-  particlesJS('particles-js', {});
-});
 
 
 if (Meteor.isClient) {
-  Meteor.startup(function () {
+  Template.base_template.rendered = function () {
 	console.log('got here');
     particlesJS('particles-js', {
       particles: {
@@ -70,7 +66,7 @@ if (Meteor.isClient) {
       /* Retina Display Support */
       retina_detect: true
     });
-  });
+  };
 
 }
 
