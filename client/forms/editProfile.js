@@ -5,9 +5,13 @@ Template.editProfile.events({
 		var school = event.target.school.value;
 		var skills = event.target.skills.value;
 		var seeking = event.target.seeking.checked;
-		console.log(seeking);
-		Meteor.call("editUser", name, school, experience, seeking);
-		Router.go('/profile/home');
+		Meteor.call("editUser", name, school, skills, seeking, function(error, result){
+			if(error)
+				console.log(error);
+			else
+				Router.go('/profile/home');
+		});
+		
 	}
 
 });
