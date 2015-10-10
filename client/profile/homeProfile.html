@@ -12,6 +12,15 @@
 		<div class = "row">
 			<h5> <span class='teal-text text-lighten-2'>Experience:</span> {{currentUser.profile.desc}}</h5>
 		</div>
+		{{#if currentUser.profile.seeking}}
+			<div class = "row">
+				<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
+			</div>
+		{{else}}
+			<div class = "row">
+				<h5><span class='teal-text text-lighten-2'>Not currently looking to join a Project</span></h5>
+			</div>
+		{{/if}}
 		<div class = "row">
 			<h5><a id="edit_profile" class="waves-effect waves-light btn">Edit Profile</a></h5>
 		</div>
