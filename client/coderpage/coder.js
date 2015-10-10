@@ -1,11 +1,9 @@
 Template.coder.helpers({
 	coders: function() {
-		var schoolname = window.location.pathname.split('/')[1];
-		return Meteor.users.find({'profile.school': schoolname}, {sort: {createdAt: -1}});
+		var schoolname = decodeURI(window.location.pathname.split('/')[1]); // Remove %20 
+		// Meteor.subscribe("users", schoolname);
+		var result = Meteor.users.find({"profile.school":schoolname, "profile.seeking":true}, {sort: {createdAt: -1}}).fetch();
+		console.log(result);
+		return result;
 	}
-});
-
-Meteor.startup(function () {
-	console.log('got here');
-	particlesJS('particles-js', {});
 });
