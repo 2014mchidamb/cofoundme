@@ -1,21 +1,33 @@
 <template name="proj">
 	<h1 class="headbox"> Ongoing projects at <b>{{schoolname}}</b></h1>
 	<div class="container">
+		{{#if Template.subscriptionsReady}}
 		{{#each projects}}
 		<div class="row midcard">
 			<div class="col s12 m6 offset-m3">
+				<!-- <div class="card blue accent-3"> -->
 				<div class="card teal lighten-2">
 					<div class="card-content white-text">
-						<span class="card-title"> {{project}} </span>
-						<p> {{descrip}} </p>
+						<span class="card-title" href={{_id}}> {{name}} </span>
+						<p> {{desc}} </p>
 					</div>
 					<div class="card-action">
-						<a href="#">{{github}}</a>
-						<a href="#">{{founder}}</a>
+						<a href={{url}}>Link</a>
+						<a href="#">{{username}}</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		{{/each}}
+		{{else}}
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+		{{/if}}
 	</div>
+}
 </template>

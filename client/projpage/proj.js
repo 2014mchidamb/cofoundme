@@ -1,6 +1,9 @@
 Template.proj.helpers({
 	projects: function() {
-		var schoolname = window.location.pathname.split('/')[1];
-		return Projects.find({school: schoolname}, {sort: {createdAt: -1}});
+		var schoolname = decodeURI(window.location.pathname.split('/')[1]);
+		Meteor.subscribe("projects", schoolname);
+		var result = Projects.find().fetch();
+		console.log(result);
+		return result;
 	}
 });
