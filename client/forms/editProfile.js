@@ -3,7 +3,7 @@ Template.editProfile.events({
 		event.preventDefault();
 		var name = event.target.name.value;
 		var school = event.target.school.value;
-		var experience = event.target.exp.value;
+		var skills = event.target.skills.value;
 		var seeking = event.target.seeking.checked;
 		console.log(seeking);
 		Meteor.call("editUser", name, school, experience, seeking);
