@@ -1,7 +1,7 @@
 <template name = "homeProfile">
 	<h1 class="headbox"> My Profile </h1>
 	<div class="container white-container" >
-	
+	{{#if Template.subscriptionsReady}}
 	{{#if currentUser}}
 		<div class="row">
 			 <h5> <span class='teal-text text-lighten-2'>Name:</span> {{currentUser.profile.name}} </h5> 
@@ -12,6 +12,16 @@
 		<div class = "row">
 			<h5> <span class='teal-text text-lighten-2'>Skills:</span> {{currentUser.profile.skills}}</h5>
 		</div>
+
+		<div class = "row">
+			<h5> 
+				<span class='teal-text text-lighten-2'>Projects:</span>
+				{{#each projects}}
+					{{name}}
+				{{/each}}
+			</h5>
+		</div>
+
 		{{#if currentUser.profile.seeking}}
 			<div class = "row">
 				<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
@@ -24,10 +34,12 @@
 		<div class = "row">
 			<h5><a id="edit_profile" class="waves-effect waves-light btn">Edit Profile</a></h5>
 		</div>
+
 	{{else}}
 		<div class="row">
 			<h4> You need to login!</h4>
 		</div>
+	{{/if}}
 	{{/if}}
 	</div>
 </template>

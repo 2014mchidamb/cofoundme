@@ -10,3 +10,15 @@ Template.homeProfile.events = {
         Router.go('/profile/edit');
     }
 };
+
+Template.homeProfile.helpers({
+	'projects':function(){
+		var schoolname = decodeURI(window.location.pathname.split('/')[1]);
+		Meteor.subscribe("projectsByUser", Meteor.userId());
+		var result = Projects.find().fetch();
+		console.log(result);
+
+		return result;
+	}
+
+});
