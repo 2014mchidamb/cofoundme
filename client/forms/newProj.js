@@ -43,6 +43,8 @@ Template.newProj.events({
 		event.preventDefault();
 		var projname = event.target.proj_name.value;
 		var url = event.target.proj_link.value;
+        if(url.indexOf("http") == -1)
+            url = "http://" + url;
 		var school = event.target.school.value;
 		var projdesc = event.target.desc.value;
         var cofounders_values = [];

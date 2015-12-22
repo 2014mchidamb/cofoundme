@@ -1,16 +1,27 @@
-<template name="navbar">    
+<template name="navbar">   
+	<ul id="dropdown" class="dropdown-content">
+		<li><a id="profile">My Profile</a></li>
+		<li class="divider"></li>
+		<li><a id="signout">Sign Out</a> </li>
+	</ul> 
 	<nav>
-        <div class="nav-wrapper teal lighten-2">
-            <a href ="/" id="logo" class="brand-logo left navpad">CoFoundMe</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down navpad">
+		<div class="nav-wrapper teal lighten-2">
+			{{#if currentUser}}
+			<a href = "/{{cleanUrl}}" id="logo" class="brand-logo left navpad">CoFoundMe</a>
+			{{else}}
+			<a href ="/" id="logo" class="brand-logo left navpad">CoFoundMe</a>
+			{{/if}}
+			<ul id="nav-mobile" class="right hide-on-med-and-down navpad">
 				{{#if currentUser}}
-					<li> <a id="signout" class="waves-effect waves-light btn">Sign Out</a> </li>
-					<li><a id="insertProjectForm" class="waves-effect waves-light btn">New Project</a></li>
-					<li><i id="profile" class="mdi-action-account-box" style="font-size:50px"></i></li>
+				<li><a id="insertProjectForm" >New Project</a></li>
+				<!-- Dropdown Trigger -->
+				<li><a class="dropdown-button" href="" data-activates="dropdown">Profile
+					<i class="material-icons right">arrow_drop_down</i>
+				</a></li>
 				{{else}}
-					<li> <a id="signin" class="waves-effect waves-light btn" >Sign In</a> </li>
+				<li> <a id="signin">Sign In</a> </li>
 				{{/if}}
-            </ul>
-        </div>
-    </nav>
+			</ul>
+		</div>
+	</nav>
 </template>

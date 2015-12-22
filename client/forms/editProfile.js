@@ -1,3 +1,8 @@
+var userId;
+Template.editProfile.rendered = function(){
+	userId = this.data.id;
+};
+
 Template.editProfile.events({
 	"submit form": function(event) {
 		event.preventDefault();
@@ -9,9 +14,10 @@ Template.editProfile.events({
 			if(error)
 				console.log(error);
 			else
-				Router.go('/profile/home');
+				Router.go('/profile/'+userId+'/home');
 		});
 		
 	}
 
 });
+
