@@ -9,5 +9,6 @@ if(Meteor.isServer)
 		user.profile.cofounder_of = [];
 		user.profile.member_of = [];
 		}
+        return user;
 	});
 }
