@@ -1,10 +1,5 @@
-
-
-
-
 if (Meteor.isClient) {
   Template.base_template.rendered = function () {
-	console.log('got here');
     particlesJS('particles-js', {
       particles: {
         color: '#4db6ac',
