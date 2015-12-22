@@ -1,0 +1,22 @@
+<template name="myProjects">
+	<h1 class="headbox"> Your current projects </h1>
+	<div class="container">
+		{{#each myprojs}}
+		<div class="row midcard">
+			<div class="col s12 m6 offset-m3">
+				<!-- <div class="card blue accent-3"> -->
+				<div class="card teal lighten-2">
+					<div class="card-content white-text">
+						<span class="card-title" href={{_id}}> {{name}} </span>
+						<p> {{desc}} </p>
+					</div>
+					<div class="card-action">
+						<a href={{url}}> {{url}} </a>
+						<a href="#"> {{school}} </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</template>

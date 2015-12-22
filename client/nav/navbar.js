@@ -19,6 +19,10 @@ Template.navbar.events = {
 		event.preventDefault();
 		Router.go('/project/new');
 	},
+	'click #myProjects': function(event) {
+		event.preventDefault();
+		Router.go('/project/mystuff');
+	},
 	'click #profile': function(event) {
 		event.preventDefault();
 		Router.go('/profile/'+Meteor.userId()+'/home');

@@ -11,7 +11,6 @@ Template.homeProfile.events = {
         Router.go('/profile/'+userId+'/edit');
     }
 };
-
 Template.homeProfile.helpers({
 	'projects':function(){
 		var result = Projects.find().fetch();
