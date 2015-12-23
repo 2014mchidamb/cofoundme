@@ -2,15 +2,14 @@
 	<ul id="dropdown" class="dropdown-content">
 		<li><a id="profile">My Profile</a></li>
 		<li class="divider"></li>
+		<li><a id="myProjects">My Projects</a></li>
+		<li class="divider"></li>
 		<li><a id="signout">Sign Out</a> </li>
+
 	</ul> 
 	<nav>
 		<div class="nav-wrapper teal lighten-2">
-			{{#if currentUser}}
-			<a href = "/{{cleanUrl}}" id="logo" class="brand-logo left navpad">CoFoundMe</a>
-			{{else}}
 			<a href ="/" id="logo" class="brand-logo left navpad">CoFoundMe</a>
-			{{/if}}
 			<ul id="nav-mobile" class="right hide-on-med-and-down navpad">
 				{{#if currentUser}}
 				<li><a id="insertProjectForm" >New Project</a></li>

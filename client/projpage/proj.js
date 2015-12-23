@@ -1,9 +1,13 @@
-Template.proj.helpers({
-	projects: function() {
-		var schoolname = decodeURI(window.location.pathname.split('/')[1]);
-		Meteor.subscribe("projectsBySchool", schoolname);
-		var result = Projects.find().fetch();
-		console.log(result);
-		return result;
-	}
-});
+if(Meteor.isClient)
+{
+	Template.proj.rendered = function() {
+		Meteor.subscribe("projectsBySchool", this.data.schoolname);
+	};
+
+	Template.proj.helpers({
+		projects: function() {
+			var result = Projects.find().fetch();
+			return result;
+		}
+	});
+}

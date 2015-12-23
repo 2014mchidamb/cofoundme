@@ -65,6 +65,7 @@ Template.newProj.events({
             {
                 if(error)
                     console.error(error);
+                
             });
 		
 
