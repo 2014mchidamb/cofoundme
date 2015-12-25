@@ -2,12 +2,16 @@ if(Meteor.isClient)
 {
 	var proj;
 	var sub;
-	Template.projectHome.created = function(){
-		sub = Meteor.subscribe("projectById", this.data, function() {
-					proj = Projects.find().fetch()[0];
-			});
 
-	};
+	Template.projectHome.onCreated(function(){
+		console.log(Meteor.userId());
+		var instance = this;
+		sub = Meteor.subscribe("projectsByUser", Meteor.userId(), function() {
+			proj = Projects.find({_id:instance.data.id}).fetch()[0];				
+		});
+	});
+
+
 	Template.projectHome.helpers({
 		title: function() {	
 			if(sub.ready())	
