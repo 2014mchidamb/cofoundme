@@ -1,7 +1,13 @@
-Template.myProjects.helpers({
-	myprojs: function() {
+if(Meteor.isClient)
+{
+	Template.myProjects.rendered = function() {
 		Meteor.subscribe("projectsByUser", Meteor.userId());
-		var result = Projects.find().fetch();
-		return result;
-	}
-});
+	};
+
+	Template.myProjects.helpers({
+		myprojs: function() {
+			var result = Projects.find().fetch();
+			return result;
+		}
+	});
+}

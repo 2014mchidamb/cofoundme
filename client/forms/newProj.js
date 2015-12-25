@@ -61,11 +61,15 @@ Template.newProj.events({
             var key = "members"+mindex;
             members_values.push(event.target[key].value);
         }
-        Meteor.call("insertProject", projname, url, school, cofounders_values, members_values, projdesc, function(error, result)
+        Meteor.call("insertProject", projname, url, school, cofounders_values, members_values, projdesc, function(error, id)
             {
                 if(error)
-                    console.error(error);
-                
+                    console.log(error);
+                else
+                {
+                    Router.go("/project/"+id);
+                }
+
             });
 		
 

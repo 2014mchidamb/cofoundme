@@ -16,7 +16,8 @@
 			<h5> 
 				<span class='teal-text text-lighten-2'>Projects:</span>
 				{{#each projects}}
-					{{name}}
+					<a href={{pathFor 'projectHome' _id=this._id}}>{{name}}</a>
+					
 				{{/each}}
 			</h5>
 		</div>
