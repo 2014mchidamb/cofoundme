@@ -11,11 +11,4 @@ if(Meteor.isClient)
 		}
 	});
 
-	// Template.proj.events({
-	// 	'click .card-title': function(event)
-	// 	{
-	// 		console.log(event);
-	// 		Router.go("/"+event.target.value);
-	// 	}
-	// });
 }

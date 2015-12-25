@@ -2,7 +2,7 @@ if(Meteor.isClient)
 {
 	var proj;
 	var sub;
-
+	// TODO: refresh subscription
 	Template.projectHome.onCreated(function(){
 		console.log(Meteor.userId());
 		var instance = this;
