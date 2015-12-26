@@ -61,7 +61,8 @@ Template.newProj.events({
             var key = "members"+mindex;
             members_values.push(event.target[key].value);
         }
-        Meteor.call("insertProject", projname, url, school, cofounders_values, members_values, projdesc, function(error, id)
+        var priv = event.target.private.checked;
+        Meteor.call("insertProject", projname, url, school, cofounders_values, members_values, projdesc, priv, function(error, id)
             {
                 if(error)
                     console.log(error);
