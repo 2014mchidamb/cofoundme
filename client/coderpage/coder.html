@@ -1,6 +1,7 @@
 <template name="coder">
 	<h1 class="headbox"> Student talent at <b>{{schoolname}}</b></h1>
 	<div class="container">
+	{{#if Template.subscriptionsReady}}
 		{{#each coders}}
 		<div class="row midcard">
 			<div class="col s12 m6 offset-m3">
@@ -17,5 +18,8 @@
 			</div>
 		</div>
 		{{/each}}
+	{{else}}
+		Loading
+	{{/if}}
 	</div>
 </template>

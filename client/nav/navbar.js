@@ -3,6 +3,10 @@ Template.navbar.events = {
 	'click #signin': function(event) {
 		event.preventDefault();
 		Router.go('/users/login');
+	},	
+	'click #register': function(event) {
+		event.preventDefault();
+		Router.go('/users/signup');
 	},
 	'click #logo': function(event) {
 		event.preventDefault();

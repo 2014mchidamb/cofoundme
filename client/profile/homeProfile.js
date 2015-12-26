@@ -1,10 +1,10 @@
 if(Meteor.isClient)
 {
 	var userId;
-	Template.homeProfile.rendered = function() {
+	Template.homeProfile.onRendered(function() {
 		userId = this.data.id;
 		Meteor.subscribe("projectsByUser", userId);
-	};
+	});
 
 	Template.homeProfile.events = {
 		'click #edit_profile': function(event) {

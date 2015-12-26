@@ -1,8 +1,11 @@
 if(Meteor.isClient)
 {
-	Template.myProjects.rendered = function() {
+	var result;
+	Tracker.autorun(function(){
 		Meteor.subscribe("projectsByUser", Meteor.userId());
-	};
+	});
+	// Template.myProjects.rendered = function() {
+	// };
 
 	Template.myProjects.helpers({
 		myprojs: function() {
