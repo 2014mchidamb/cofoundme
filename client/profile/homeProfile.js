@@ -1,6 +1,10 @@
 if(Meteor.isClient)
 {
 	var userId;
+	Tracker.autorun(function(){
+		Meteor.subscribe("userById", Session.get("userid"));
+		Meteor.subscribe("projectsByUser", Session.get("userid"));
+	});
 	Template.homeProfile.onRendered(function() {
 		userId = this.data.id;
 		Meteor.subscribe("projectsByUser", userId);
