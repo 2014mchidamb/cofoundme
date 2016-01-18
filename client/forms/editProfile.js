@@ -21,3 +21,11 @@ Template.editProfile.events({
 
 });
 
+Template.editProfile.helpers({
+	'isUser':function(){
+		if(!Meteor.user())
+			return false;
+		return Meteor.user()._id === userId;
+	}
+});
+

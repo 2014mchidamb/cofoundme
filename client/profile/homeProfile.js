@@ -6,14 +6,14 @@ if(Meteor.isClient)
 
 	Template.homeProfile.onCreated(function(){
 		var self = this;
-
+		userId = self.data.id;
 		self.autorun(function(){
-			self.subscribe("userById", self.data.id,
+			self.subscribe("userById", userId,
 				function() {
 					user = Meteor.users.find().fetch()[0];
 
 				});
-			self.subscribe("projectsByUser", self.data.id,
+			self.subscribe("projectsByUser", userId,
 				function(){
 					projects = Projects.find().fetch();
 				});

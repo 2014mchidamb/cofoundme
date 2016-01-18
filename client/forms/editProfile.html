@@ -1,6 +1,6 @@
 <template name="editProfile">
 	<div class="formhead">
-		{{#if currentUser}}
+		{{#if isUser}}
 		<h1> Edit Profile </h1>
 
 		<div class='container white-container'>
@@ -55,7 +55,7 @@
 		</div>
 		{{else}}
 		<div class="row">
-			<h4> You need to login!</h4>
+			<h4> You need to login or do not have permissions to view this page!</h4>
 		</div>
 		{{/if}}
 	</div>
