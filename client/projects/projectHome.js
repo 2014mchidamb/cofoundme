@@ -6,7 +6,7 @@ if(Meteor.isClient)
 	Template.projectHome.onCreated(function(){
 		var self = this;
 		self.autorun(function(){
-			self.subscribe("projectById", Session.get("currentProjId"),
+			self.subscribe("projectById", self.data.id,
 				function()
 				{
 					proj = Projects.find().fetch()[0];
@@ -26,7 +26,6 @@ if(Meteor.isClient)
 			return proj;
 		},
 		isOwner: function(){
-			console.log(proj);
 			if(!Meteor.user())
 				return false;
 			return proj.owner === Meteor.user()._id;
