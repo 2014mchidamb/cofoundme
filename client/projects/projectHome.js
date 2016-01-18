@@ -6,10 +6,9 @@ if(Meteor.isClient)
 	Template.projectHome.onCreated(function(){
 		var self = this;
 		self.autorun(function(){
-			self.subscribe("projectById", self.data.id,
-				function()
-				{
-					proj = Projects.find().fetch()[0];
+			var projId = self.data.id;
+			self.subscribe("projectById", projId, function() {
+					proj = Projects.find({_id:projId}).fetch()[0];
 				});
 		});
 		

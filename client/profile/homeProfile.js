@@ -1,21 +1,21 @@
 if(Meteor.isClient)
 {
-	var userId;
+
 	var user;
 	var projects;
 
 	Template.homeProfile.onCreated(function(){
 		var self = this;
-		userId = self.data.id;
 		self.autorun(function(){
+			var userId = self.data.id;
 			self.subscribe("userById", userId,
 				function() {
-					user = Meteor.users.find().fetch()[0];
+					user = Meteor.users.find({_id:userId}).fetch()[0];
 
 				});
 			self.subscribe("projectsByUser", userId,
 				function(){
-					projects = Projects.find().fetch();
+					projects = Projects.find({owner:userId}).fetch();
 				});
 		});
 	});
