@@ -1,40 +1,40 @@
 <template name = "homeProfile">
-	<h1 class="headbox"> My Profile </h1>
-	<div class="container white-container" >
+
 	{{#if Template.subscriptionsReady}}
+	<h1 class="headbox"> {{title}} </h1>
+	<div class="container white-container">
 		<div class="row">
-			 <h5> <span class='teal-text text-lighten-2'>Name:</span> {{currentUser.profile.name}} </h5> 
-		</div>
-		<div class="row">
-			 <h5> <span class='teal-text text-lighten-2'>School:</span> {{currentUser.profile.school}} </h5> 
+			<h5> <span class='teal-text text-lighten-2'>School:</span> {{school}}</h5> 
 		</div>
 		<div class = "row">
-			<h5> <span class='teal-text text-lighten-2'>Skills:</span> {{currentUser.profile.skills}}</h5>
+			<h5> <span class='teal-text text-lighten-2'>Skills:</span> {{skills}}</h5>
 		</div>
 
 		<div class = "row">
 			<h5> 
 				<span class='teal-text text-lighten-2'>Projects:</span>
 				{{#each projects}}
-					<a href={{pathFor 'projectHome' _id=this._id}}>{{name}}</a>
-					
+				<a href={{pathFor 'projectHome' _id=this._id}}>{{name}}</a>
+
 				{{/each}}
 			</h5>
 		</div>
-		{{#if currentUser.profile.seeking}}
-			<div class = "row">
-				<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
-			</div>
-		{{else}}
-			<div class = "row">
-				<h5><span class='teal-text text-lighten-2'>Not currently looking to join a Project</span></h5>
-			</div>
-		{{/if}}
-		{{#if currentUser}}
+		{{#if seeking}}
 		<div class = "row">
-			<h5><a id="edit_profile" class="waves-effect waves-light btn">Edit Profile</a></h5>
+			<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
+		</div>
+		{{else}}
+		<div class = "row">
+			<h5><span class='teal-text text-lighten-2'>Not currently looking to join a Project</span></h5>
 		</div>
 		{{/if}}
+	
+	{{#if currentUser}}
+	<div class = "row">
+		<h5><a id="edit_profile" class="waves-effect waves-light btn">Edit Profile</a></h5>
+	</div>
 	{{/if}}
 	</div>
+	{{/if}}
+	
 </template>
