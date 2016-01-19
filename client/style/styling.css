@@ -47,10 +47,17 @@
 	margin-right: 5px;
 }
 
-.white-container{
+.white-container {
 	background: #FFFFFF; 
 	border: 1px solid #AEEBE5;
 	width:50%;
+}
+
+.white-container2 {
+    background: #FFFFFF;
+    border: 1px solid #AEEBE5;
+    width:75%;
+    margin-top: 60px;
 }
 
 #particles-js {
@@ -89,6 +96,7 @@
 .package {
   width: 600px;
   border-bottom: 1px solid #eee;
+  /*border: 2px solid #4db6ac;*/
   padding: 8px 0;
 }
 
