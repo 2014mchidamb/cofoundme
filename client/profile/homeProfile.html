@@ -14,7 +14,7 @@
 			<h5> 
 				<span class='teal-text text-lighten-2'>Projects:</span>
 				{{#each projects}}
-				<a href={{pathFor 'projectHome' _id=this._id}}>{{name}}</a>
+				<a href="/project/{{this._id}}/home">{{name}}</a>
 
 				{{/each}}
 			</h5>
@@ -29,9 +29,9 @@
 		</div>
 		{{/if}}
 	
-	{{#if currentUser}}
+	{{#if isCurrentUser}}
 	<div class = "row">
-		<h5><a id="edit_profile" class="waves-effect waves-light btn">Edit Profile</a></h5>
+		<a href={{editUrl}}><h5 id="edit_profile" class="waves-effect waves-light btn">Edit Profile</h5></a>
 	</div>
 	{{/if}}
 	</div>

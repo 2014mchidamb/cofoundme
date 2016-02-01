@@ -3,11 +3,13 @@ if(Meteor.isClient)
 
 	var user;
 	var projects;
+	var userId;
 
 	Template.homeProfile.onCreated(function(){
 		var self = this;
 		self.autorun(function(){
-			var userId = self.data.id;
+			userId = self.data.id;
+			console.log(userId);
 			self.subscribe("userById", userId,
 				function() {
 					user = Meteor.users.find({_id:userId}).fetch()[0];
@@ -43,6 +45,12 @@ if(Meteor.isClient)
 		},
 		'seeking':function(){
 			return user.profile.seeking;
+		},
+		'isCurrentUser':function(){
+			return userId === Meteor.userId();
+		},
+		'editUrl':function(){
+			return '/profile/'+userId+"/edit";
 		}
 
 	});

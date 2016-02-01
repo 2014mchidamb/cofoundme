@@ -3,4 +3,4 @@ Template.home.events = {
 		event.preventDefault();
 		Router.go('/'+document.getElementById('school').value);
 	}
-}
+};
