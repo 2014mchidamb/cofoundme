@@ -41,6 +41,7 @@ Template.newProj.rendered = function(){
 Template.newProj.events({
 	"submit form": function(event) {
 		event.preventDefault();
+        console.log("form submitted");
 		var projname = event.target.proj_name.value;
 		var url = event.target.proj_link.value;
         if(url.indexOf("http") == -1)
@@ -68,7 +69,7 @@ Template.newProj.events({
                     console.log(error);
                 else
                 {
-                    Router.go("/project/"+id);
+                    Router.go("/project/"+id+"/home");
                 }
 
             });
