@@ -1,5 +1,8 @@
 if (Meteor.isClient) {
   Template.accountsLayout.rendered = function () {
+    $(document).ready(function() {
+      $('select').material_select();
+    });
     particlesJS('particles-js', {
       particles: {
         color: '#4db6ac',

@@ -1,5 +1,9 @@
 if (Meteor.isClient) {
   Template.base_template.rendered = function () {
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+    
     particlesJS('particles-js', {
       particles: {
         color: '#4db6ac',
