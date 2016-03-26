@@ -1,0 +1,84 @@
+<template name="editProj">
+	<div class="formhead">
+		{{#if Template.subscriptionsReady}}
+		{{#if isOwner}}
+		<h1> Edit Project </h1>
+
+		<div class='container white-container'>
+			<form class="edit_proj">
+				<div class="row">
+					<div class="col s12">
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="name" type="text" required value={{name}}>
+								<label for="name" class="active"> Name </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="desc" type="text" required value={{desc}}>
+								<label for="desc" class="active"> Description </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="url" type="text" required value={{url}}>
+								<label for="url" class="active"> URL </label>
+							</div>
+						</div>
+
+						{{#each cofounders}}
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="cofounders" type="text" required value={{this}}>
+								<label for="cofounders" class="active"> Cofounder </label>
+							</div>
+						</div>
+						<div class="row">
+							<input type="button" class="waves-effect waves-light btn" value="Remove"/>
+						</div>
+						{{/each}}
+						<button type="button" id="addname_cofounders" class="waves-effect waves-light btn" >Add Cofounder</button>
+						<!-- TODO -->
+						<fieldset id="members-set" style='border:0'>
+						{{#each members}}
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="members" type="text" required value={{this}}>
+								<label for="members" class="active"> Member </label>
+							</div>
+						</div>
+						<div class="row">
+							<input type="button" class="waves-effect waves-light btn" value="Remove"/>
+						</div>
+						{{/each}}
+						</fieldset>
+
+						
+						<button type="button" id="addname_members" class="waves-effect waves-light btn" >Add Member</button>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="checkbox" id="private" checked={{private}}/>
+								<label for="private">Private Project (invisible to unapproved users)</label>
+							</div>
+						</div>
+						<div class="row">
+							<button class="btn waves-effect waves-light" type="submit" name="action" style='center'>Submit
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		{{else}}
+		<div class="row">
+			<h4> You need to login or do not have permissions to view this page!</h4>
+		</div>
+		{{/if}}
+		{{else}}
+		Loading...
+		{{/if}}
+	</div>
+</template>
+
+
