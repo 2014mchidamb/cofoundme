@@ -1,5 +1,5 @@
 var userId;
-Template.editProfile.rendered = function(){
+Template.editProfile.created = function(){
 	userId = this.data.id;
 };
 
