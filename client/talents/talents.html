@@ -1,0 +1,24 @@
+<template name="talentsHeader">
+  Student Talent at <b>{{schoolname}}</b> 
+</template>
+
+<template name="talents">
+  <div id='search-result'>
+    <div id="search-meta">
+      {{#if isLoading}}
+      searching ...
+      {{/if}}
+    </div>
+
+    {{#each getTalents}}
+    <div class="package">
+      <h4 class="name">
+        <a href="/profile/{{_id}}/home" target="_blank">{{profile.name}}</a> 
+      </h4>
+      <div id="skills">
+        {{profile.skills}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</template>
