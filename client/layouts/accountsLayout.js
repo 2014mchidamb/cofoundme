@@ -3,6 +3,8 @@ if (Meteor.isClient) {
     $(document).ready(function() {
       $('select').material_select();
     });
+    $(".button-collapse").sideNav();
+    
     particlesJS('particles-js', {
       particles: {
         color: '#4db6ac',

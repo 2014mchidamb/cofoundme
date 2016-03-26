@@ -1,0 +1,19 @@
+<template name="search_template">
+  <div class="container white-container2">
+    <div id="heading"> <h1> {{>searchHeader}} </h1> </div>
+    {{> searchBox }}
+    {{> searchResult}}
+  </div>
+</template>
+
+<template name="searchHeader">
+	{{>yield region="searchHeader"}}
+</template>
+
+<template name="searchBox">
+  <input type="text" id="search-box" placeholder="search here" />
+</template>
+
+<template name="searchResult">
+  {{>yield region='searchResult'}}
+</template>
