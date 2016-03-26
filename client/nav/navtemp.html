@@ -10,6 +10,7 @@
 	<nav>
 		<div class="nav-wrapper teal lighten-2">
 			<a href ="/" id="logo" class="brand-logo left navpad">CoFoundMe</a>
+			<a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down navpad">
 				{{#if currentUser}}
 				<li><a id="insertProjectForm" >New Project</a></li>
@@ -20,6 +21,18 @@
 				{{else}}
 				<li> <a id="register" style="color:#ffab40;">Register</a></li>
 				<li> <a id="signin">Sign In</a> </li>
+				{{/if}}
+			</ul>
+			<ul class="side-nav" id="mobile">
+				{{#if currentUser}}
+					<li><a href="/">Home</a></li>
+					<li><a id="profile">My Profile</a></li>
+					<li><a id="myProjects">My Projects</a></li>
+					<li><a id="insertProjectForm" >New Project</a></li>
+					<li><a id="signout">Sign Out</a> </li>
+				{{else}}
+					<li> <a id="register" style="color:#ffab40;">Register</a></li>
+					<li> <a id="signin">Sign In</a> </li>
 				{{/if}}
 			</ul>
 		</div>
