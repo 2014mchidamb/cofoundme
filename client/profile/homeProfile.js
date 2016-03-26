@@ -37,6 +37,9 @@ if(Meteor.isClient)
 		'title':function(){
 			return user.profile.name;
 		},
+		'email':function(){
+			return user.emails[0].address;
+		},
 		'school':function(){
 			return user.profile.school;
 		},
