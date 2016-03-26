@@ -15,7 +15,6 @@
 	text-align: center;
 	color: #4db6ac;
 	margin-top: 40px;
-	margin-left: 140px;
 	background: rgba(255, 255, 255);
 }
 
@@ -47,16 +46,17 @@
 	margin-right: 5px;
 }
 
+
 .white-container {
 	background: #FFFFFF; 
 	border: 1px solid #AEEBE5;
-	width:50%;
+  width:60%;
 }
+
 
 .white-container2 {
     background: #FFFFFF;
     border: 1px solid #AEEBE5;
-    width:75%;
     margin-top: 60px;
 }
 
