@@ -1,42 +1,38 @@
 <template name="projectHome">
-
-
-	
-	{{#if Template.subscriptionsReady}}
-	<h1 id="title" class="headbox">{{title}}</h1> 
-	<div class="container white-container" >
-		<div class="row">
-			 <h5> <span class='teal-text text-lighten-2'>Description:</span> {{project.desc}} </h5> 
-		</div>
-		<div class="row">
-			 <h5> <span class='teal-text text-lighten-2'>School:</span> {{project.school}} </h5> 
-		</div>
-		<div class="row">
-			<h5> <span class='teal-text text-lighten-2'>Created By: </span><a href="/profile/{{project.owner}}/home"> {{project.ownerName}} </a> </h5>
-		</div>
-		<div class = "row">
-			<h5> <span class='teal-text text-lighten-2'>CoFounders:</span>
-			{{project.cofounders}}
-			<!-- Add once we link users to projects, do similar for members -->
+		{{#if Template.subscriptionsReady}}
+		<h1 id="title" class="headbox">{{title}}</h1> 
+		<div class="container white-container" >
+			<div class="row">
+				<h5> <span class='teal-text text-lighten-2'>Description:</span> {{project.desc}} </h5> 
+			</div>
+			<div class="row">
+				<h5> <span class='teal-text text-lighten-2'>School:</span> {{project.school}} </h5> 
+			</div>
+			<div class="row">
+				<h5> <span class='teal-text text-lighten-2'>Created By: </span><a href="/profile/{{project.owner}}/home"> {{project.ownerName}} </a> </h5>
+			</div>
+			<div class = "row">
+				<h5> <span class='teal-text text-lighten-2'>CoFounders:</span>
+					{{project.cofounders}}
+					<!-- Add once we link users to projects, do similar for members -->
 <!-- 			{{#each projects.cofounders}}
 			 	<a href="/profile/{{this._id}}">{{this}}</a>
-			 {{/each}} -->
-			</h5>
-		</div>
-		<div class = "row">
-			<h5> <span class='teal-text text-lighten-2'>Members:</span> {{project.members}}</h5>
-		</div>
-	
-		{{#if isOwner}}
-		<div class = "row">
-			<h5><a href={{editUrl}} id="edit_project" class="waves-effect waves-light btn">Edit Project</a></h5>
-		</div>
-		{{/if}}
-		</div>
-	
-	{{else}}
-		Loading
-	{{/if}}
-	
+			 	{{/each}} -->
+			 </h5>
+			</div>
+			<div class = "row">
+				<h5> <span class='teal-text text-lighten-2'>Members:</span> {{project.members}}</h5>
+			</div>
 
-</template>
+			{{#if isOwner}}
+			<div class = "row">
+				<h5><a href={{editUrl}} id="edit_project" class="waves-effect waves-light btn">Edit Project</a></h5>
+			</div>
+			{{/if}}
+		</div>
+
+		{{else}}
+		Loading
+		{{/if}}
+
+	</template>
