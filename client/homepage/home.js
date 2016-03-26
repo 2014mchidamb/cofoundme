@@ -8,6 +8,7 @@ Template.home.onRendered(function(){
 		el.value = opt;
 		select.appendChild(el);
 	}
+
 });
 
 Template.home.events = {
