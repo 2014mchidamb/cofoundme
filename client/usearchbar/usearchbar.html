@@ -1,0 +1,32 @@
+<template name="usearchbar">
+  <div class="container white-container2">
+    <div id="heading"> <h1> Current talent at <b>{{schoolname}}</b> </h1> </div>
+    {{> usearchBox }}
+    {{> usearchResult}}
+  </div>
+</template>
+
+<template name="usearchBox">
+  <input type="text" id="search-box" placeholder="search projects here" />
+</template>
+
+<template name="usearchResult">
+  <div id='search-result'>
+    <div id="search-meta">
+      {{#if isLoading}}
+        searching ...
+      {{/if}}
+    </div>
+
+    {{#each getProjects}}
+    <div class="package">
+      <h4 class="name">
+        <a href="/project/{{_id}}" target="_blank">{{name}}</a> by <a href="/profile/{{owner}}/home">{{ownerName}}</a>
+      </h4>
+      <div class="description">
+        {{{desc}}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</template>

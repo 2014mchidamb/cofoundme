@@ -1,8 +1,8 @@
-<template name="talentsHeader">
+<template name="needsHeader">
   Student Talent at <b>{{schoolname}}</b> 
 </template>
 
-<template name="talents">
+<template name="needs">
   <div id='search-result'>
     <div id="search-meta">
       {{#if isLoading}}
@@ -10,7 +10,7 @@
       {{/if}}
     </div>
 
-    {{#each getTalents}}
+    {{#each getNeeds}}
     <div class="package">
       <h4 class="name">
         <a href="/profile/{{_id}}/home" target="_blank">{{profile.name}}</a> 

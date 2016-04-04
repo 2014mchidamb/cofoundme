@@ -58,6 +58,9 @@ if(Meteor.isClient)
 		desc: function(){
 			return proj.desc;
 		},
+        needs: function() {
+            return proj.needs;
+        },
 		url: function() {
 			return proj.url;
 		},
@@ -79,21 +82,22 @@ if(Meteor.isClient)
 			return '/project/'+projId+'/edit';
 		}
 	});
-	//id, projname, url, school, cofounders, members, projdesc, private
+	//id, projname, url, school, cofounders, members, projdesc, needs, private
 	Template.editProj.events({
 		"submit form": function(event){
 			event.preventDefault();
 			var t = event.target;
 			var name = t.name.value;
 			var url = t.url.value;
-			var desc = t.desc.value
+			var desc = t.desc.value;
+            var needs = t.needs.value;
 			//TODO
 			//var school = t.school.value;
 			var school = "University of Virginia";
 			var cofounders = t.cofounders.value;
 			var members = t.members.value;
 			var private = t.private.value;
-			Meteor.call('editProj', projId, name, url, school, cofounders, members, desc, private, function(error, result){
+			Meteor.call('editProj', projId, name, url, school, cofounders, members, desc, needs, private, function(error, result){
 				if(error)
 					console.log(error);
 				else

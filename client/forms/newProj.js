@@ -48,6 +48,7 @@ Template.newProj.events({
             url = "http://" + url;
 		var school = event.target.school.value;
 		var projdesc = event.target.desc.value;
+        var projneeds = event.target.needs.value;
         var cofounders_values = [];
 
         for(var cindex = 0; cindex< cofounders_index; cindex++)
@@ -63,7 +64,7 @@ Template.newProj.events({
             members_values.push(event.target[key].value);
         }
         var priv = event.target.private.checked;
-        Meteor.call("insertProject", projname, url, school, cofounders_values, members_values, projdesc, priv, function(error, id)
+        Meteor.call("insertProject", projname, url, school, cofounders_values, members_values, projdesc, projneeds, priv, function(error, id)
             {
                 if(error)
                     console.log(error);
