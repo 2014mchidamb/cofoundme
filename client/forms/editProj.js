@@ -73,6 +73,7 @@ if(Meteor.isClient)
 			var name = t.name.value;
 			var url = t.url.value;
 			var desc = t.desc.value;
+			console.log(t.desc);
 			var needs = t.needs.value;
 			//TODO
 			//var school = t.school.value;
