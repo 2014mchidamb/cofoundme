@@ -30,6 +30,9 @@ if(Meteor.isClient)
 		desc: function(){
 			return proj.desc;
 		},
+        needs: function() {
+            return proj.needs;
+        },
 		project: function(){
 			return proj;
 		},
