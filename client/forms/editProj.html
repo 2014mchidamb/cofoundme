@@ -16,53 +16,40 @@
 						</div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input id="desc" type="text" required value={{desc}}>
+								<input id="desc" type="text" value={{desc}}>
 								<label for="desc" class="active"> Description </label>
 							</div>
 						</div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="desc" type="text" required value={{needs}}>
-                                <label for="desc" class="active"> Needs </label>
-                            </div>
-                        </div>
 						<div class="row">
 							<div class="input-field col s12">
-								<input id="url" type="text" required value={{url}}>
+								<input id="desc" type="text" value={{needs}}>
+								<label for="desc" class="active"> Needs </label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="url" type="text" value={{url}}>
 								<label for="url" class="active"> URL </label>
 							</div>
 						</div>
-						<fieldset id="cofounders-set" style='border:0'>
-						{{#each cofounders}}
 						<div class="row">
 							<div class="input-field col s12">
-								<input id="cofounders" type="text" required value={{this}}>
-								<label for="cofounders" class="active"> Cofounder </label>
+								<input id="cofounders" type="text" value={{cofounders}}>
+								<label for="cofounders" class={{cofounder_activate}}>Cofounders</label>
 							</div>
 						</div>
 						<div class="row">
-							<input type="button" class="waves-effect waves-light btn" value="Remove"/>
-						</div>
-						{{/each}}
-						</fieldset>
-						<button type="button" id="addname_cofounders" class="waves-effect waves-light btn" >Add Cofounder</button>
-						<!-- TODO -->
-						<fieldset id="members-set" style='border:0'>
-						{{#each members}}
-						<div class="row">
 							<div class="input-field col s12">
-								<input id="members" type="text" required value={{this}}>
-								<label for="members" class="active"> Member </label>
+								<input id="members" type="text" value={{members}}>
+								<label for="members" class={{members_activate}}>Members</label>
 							</div>
 						</div>
 						<div class="row">
-							<input type="button" class="waves-effect waves-light btn" value="Remove"/>
-						</div>
-						{{/each}}
-						</fieldset>
-
-						
-						<button type="button" id="addname_members" class="waves-effect waves-light btn" >Add Member</button>
+                            <div class="input-field col s12">
+                                <textarea id="needs" class="materialize-textarea" value={{needs}}></textarea>
+                                <label for="needs"> Project Needs </label>
+                            </div>
+                        </div>
 						<div class="row">
 							<div class="input-field col s12">
 								<input type="checkbox" id="private" checked={{private}}/>

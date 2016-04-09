@@ -14,50 +14,13 @@ if(Meteor.isClient)
 			projId = self.data.id;
 			self.subscribe("projectById", projId, function() {
 				proj = Projects.find({_id:projId}).fetch()[0];
-				cofounders_length = proj.cofounders.length;
-				members_length = proj.members.length;
 
 			});
 		});
 		
 	});
 
-	Template.editProj.onRendered(function(){
-		$("#addname_cofounders").click(function() {
-			var intId = cofounders_index++;
-			var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
-			var fName = $("<input type=\"text\" name=\"cofounders[]\" class=\"cofounders\" id=\"cofounders" + cofounders_index++ + "\" />");
-			var fType = $("<select class=\"fieldtype\"><option value=\"checkbox\">Checked</option><option value=\"textbox\">Text</option><option value=\"textarea\">Paragraph</option></select>");
-			var removeButton = $("<input type=\"button\" class=\"waves-effect waves-light btn\" value=\"Remove\" />");
-			removeButton.click(function() {
-				$(this).parent().remove();
-				cofounders_index--;
-			});
-			fieldWrapper.append(fName);
-			fieldWrapper.append(fType);
-			fieldWrapper.append(removeButton);
-			$("#cofounders-set").append(fieldWrapper);
-        // $("body").append(fieldSet);
-    });
-		$("#addname_members").click(function() {
-			var intId = members_index++;
-			var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
-			var fName = $("<input type=\"text\" name=\"members[]\" class=\"members\" id=\"members" + members_index++ + "\" />");
-			var fType = $("<select class=\"fieldtype\"><option value=\"checkbox\">Checked</option><option value=\"textbox\">Text</option><option value=\"textarea\">Paragraph</option></select>");
-			var removeButton = $("<input type=\"button\" class=\"waves-effect waves-light btn\" value=\"Remove\" />");
-			removeButton.click(function() {
-				$(this).parent().remove();
-				members_index--;
-			});
-			fieldWrapper.append(fName);
-			fieldWrapper.append(fType);
-			fieldWrapper.append(removeButton);
-			$("#members-set").append(fieldWrapper);
-        // $("body").append(fieldSet);
-    });
-	});
-
-
+	
 	Template.editProj.helpers({
 		name: function() {	
 			return proj.name;
@@ -65,17 +28,27 @@ if(Meteor.isClient)
 		desc: function(){
 			return proj.desc;
 		},
-        needs: function() {
-            return proj.needs;
-        },
+		needs: function() {
+			return proj.needs;
+		},
 		url: function() {
 			return proj.url;
 		},
 		cofounders: function(){
 			return proj.cofounders;
 		},
+		cofounder_activate: function(){
+			if(proj.cofounders)
+				return "active";
+			return "";
+		},
 		members: function(){
 			return proj.members;
+		},
+		members_activate: function(){
+			if(proj.members)
+				return "active";
+			return "";
 		},
 		project: function(){
 			return proj;
@@ -87,6 +60,9 @@ if(Meteor.isClient)
 		},
 		editUrl: function(){
 			return '/project/'+projId+'/edit';
+		},
+		needs: function(){
+			return proj.needs;
 		}
 	});
 	//id, projname, url, school, cofounders, members, projdesc, needs, private
@@ -97,7 +73,7 @@ if(Meteor.isClient)
 			var name = t.name.value;
 			var url = t.url.value;
 			var desc = t.desc.value;
-            var needs = t.needs.value;
+			var needs = t.needs.value;
 			//TODO
 			//var school = t.school.value;
 			var school = "University of Virginia";
