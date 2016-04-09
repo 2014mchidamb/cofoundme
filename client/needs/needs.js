@@ -17,7 +17,7 @@ Template.needs.helpers({
   getNeeds: function() {
     return NeedsSearch.getData({
       transform: function(matchText, regExp) {
-        return matchText.replace(regExp, "<b>$&</b>");
+        return matchText.replace(regExp, "$&");
       },
       sort: {isoScore: -1}
     });
