@@ -18,7 +18,7 @@ Template.newProj.rendered = function(){
         // $("body").append(fieldSet);
     });
     $("#addname_members").click(function() {
-        var intId = $("#memberss-set div").length + 1;
+        var intId = $("#members-set div").length + 1;
         var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
         var fName = $("<input type=\"text\" name=\"members[]\" class=\"members\" id=\"members" + members_index++ + "\" />");
         var fType = $("<select class=\"fieldtype\"><option value=\"checkbox\">Checked</option><option value=\"textbox\">Text</option><option value=\"textarea\">Paragraph</option></select>");

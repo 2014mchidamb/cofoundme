@@ -3,6 +3,10 @@ if(Meteor.isClient)
 	var proj;
 	var sub;
 	var projId;
+	var cofounders_index = 0;
+	var cofounders_length = 0;
+	var members_index = 0;
+	var members_length = 0;
 	// TODO: add private proj permissions checking
 	Template.editProj.onCreated(function(){
 		var self = this;
@@ -10,6 +14,9 @@ if(Meteor.isClient)
 			projId = self.data.id;
 			self.subscribe("projectById", projId, function() {
 				proj = Projects.find({_id:projId}).fetch()[0];
+				cofounders_length = proj.cofounders.length;
+				members_length = proj.members.length;
+
 			});
 		});
 		
@@ -17,7 +24,7 @@ if(Meteor.isClient)
 
 	Template.editProj.onRendered(function(){
 		$("#addname_cofounders").click(function() {
-			var intId = $("#cofounders-set div").length + 1;
+			var intId = cofounders_index++;
 			var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
 			var fName = $("<input type=\"text\" name=\"cofounders[]\" class=\"cofounders\" id=\"cofounders" + cofounders_index++ + "\" />");
 			var fType = $("<select class=\"fieldtype\"><option value=\"checkbox\">Checked</option><option value=\"textbox\">Text</option><option value=\"textarea\">Paragraph</option></select>");
@@ -33,7 +40,7 @@ if(Meteor.isClient)
         // $("body").append(fieldSet);
     });
 		$("#addname_members").click(function() {
-			var intId = $("#memberss-set div").length + 1;
+			var intId = members_index++;
 			var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
 			var fName = $("<input type=\"text\" name=\"members[]\" class=\"members\" id=\"members" + members_index++ + "\" />");
 			var fType = $("<select class=\"fieldtype\"><option value=\"checkbox\">Checked</option><option value=\"textbox\">Text</option><option value=\"textarea\">Paragraph</option></select>");
