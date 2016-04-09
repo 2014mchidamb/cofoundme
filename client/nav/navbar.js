@@ -25,7 +25,7 @@ Template.navbar.events = {
 	},
 	'click #myProjects': function(event) {
 		event.preventDefault();
-		Router.go('/project/mystuff');
+		Router.go('/profile/myprojects');
 	},
 	'click #profile': function(event) {
 		event.preventDefault();
