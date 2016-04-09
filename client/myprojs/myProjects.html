@@ -1,24 +1,26 @@
+<template name="myProjectsHeader">
+ 	Your Projects
+</template>
+
 <template name="myProjects">
-	<h1 class="headbox"> Your current projects </h1>
-	<div class="container">
-		{{#each myprojs}}
-		<div class="row midcard">
-			<div class="col s12 m6 offset-m3">
-				<!-- <div class="card blue accent-3"> -->
-				<div class="card teal lighten-2">
-					<div class="card-content white-text">
-						<!--<span class="card-title" href={{_id}}> {{name}} </span>-->
-                        <span class="card-title" value={{_id}}><a href="/project/{{_id}}/home"><span style="color:#ffab40;"> {{name}} </span></a></span>
-						<p> {{desc}} </p>
-					</div>
-					<div class="card-action">
-						<!--<a href="/project/{{_id}}">Home</a>-->
-						<a href={{url}}> {{url}} </a>
-						<a href="/{{school}}"> {{school}} </a>
-					</div>
-				</div>
-			</div>
-		</div>
-		{{/each}}
-	</div>
+  <div id='search-result'>
+    <div id="search-meta">
+      {{#if isLoading}}
+      searching ...
+      {{/if}}
+    </div>
+
+    {{#each getProjects}}
+    <div class="row">
+      <div class="package">
+        <h4 class="name">
+          <a href="/project/{{_id}}/home" target="_blank">{{name}}</a> by <a href="/profile/{{owner}}/home">{{ownerName}}</a>
+        </h4>
+        <div class="description">
+          {{{desc}}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 </template>
