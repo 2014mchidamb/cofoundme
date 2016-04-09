@@ -2,13 +2,13 @@ var options = {
   keepHistory: 1000 * 60 * 5,
   localSearch: true
 };
-var fields = ['name', 'desc', 'ownerName'];
+var fields = ['name', 'desc', 'needs'];
 
 
 Template.needs.onCreated(function(){
     var self = this;
     self.autorun(function(){
-     NeedsSearch = new SearchSource('talents', fields, options);
+     NeedsSearch = new SearchSource('needs', fields, options);
   });
 });
 
