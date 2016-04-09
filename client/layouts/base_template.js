@@ -1,8 +1,11 @@
 if (Meteor.isClient) {
   Template.base_template.rendered = function () {
-    $(document).ready(function() {
-      $('select').material_select();
-    });
+      this.autorun(function(){
+       $(document).ready(function() {
+        $('select').material_select();
+      });
+     });
+    
 
     $(".button-collapse").sideNav();
     

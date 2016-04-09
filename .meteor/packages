@@ -10,9 +10,11 @@ accounts-password
 iron:router
 newswim:particles
 accounts-ui
-aldeed:autoform
 useraccounts:materialize
-aldeed:collection2
-gildaspk:autoform-materialize
 jquery
 meteorhacks:search-source
+meteorhacks:npm
+
+
+npm-container
+reywood:iron-router-ga
