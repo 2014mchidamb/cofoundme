@@ -32,6 +32,26 @@ if(Meteor.isServer)
       }
     });
 
+  SearchSource.defineSource('needs', function(searchText, options) {
+    var options = {sort: {isoScore: -1}, limit: 20};
+
+    if(searchText) {
+      var regExp = buildRegExp(searchText);
+      var selector = {$or: [
+        {name: regExp},
+        {desc: regExp},
+        {needs: regExp},
+        {username: regExp},
+        {ownerName: regExp}
+        ]};
+
+        return Projects.find(selector, options).fetch();
+      } else {
+        return Projects.find({}, options).fetch();
+      }
+    });
+
+
   function buildRegExp(searchText) {
   // this is a dumb implementation
   var parts = searchText.trim().split(/[ \-\:]+/);

@@ -46,6 +46,9 @@ if(Meteor.isClient)
 		'skills':function(){
 			return user.profile.skills;
 		},
+        'resume':function(){
+            return user.profile.resume;
+        },
 		'seeking':function(){
 			return user.profile.seeking;
 		},

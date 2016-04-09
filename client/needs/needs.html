@@ -13,10 +13,10 @@
     {{#each getNeeds}}
     <div class="package">
       <h4 class="name">
-        <a href="/profile/{{_id}}/home" target="_blank">{{profile.name}}</a> 
+        <a href="/project/{{_id}}/home" target="_blank">{{name}}</a> needs <b>{{needs}}</b>
       </h4>
-      <div id="skills">
-        {{profile.skills}}
+      <div class="description">
+        {{desc}}
       </div>
     </div>
     {{/each}}
