@@ -4,7 +4,14 @@ Template.editProfile.created = function(){
 };
 
 Template.editProfile.events({
-	"submit form": function(event) {
+	'change #resume': function(event, template){
+		event.preventDefault();
+		var resume_name = template.find("#resume-name");
+		if(event.target.files[0])
+			resume_name.value = event.target.files[0].name;
+
+	},
+	'submit form': function(event) {
 		event.preventDefault();
 		var name = event.target.name.value;
 		var school = event.target.school.value;

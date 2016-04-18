@@ -25,18 +25,17 @@
 								<label for="skills" class="active"> Skills </label>
 							</div>
 						</div>
-                        <div class="row">
-                            <div class="file-field input-field">
-                                <div class="btn teal lighten-2">
-                                    <span>Resume</span>
-                                    <input id="resume" type="file">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload Resume">
-                                </div>
-                            </div>
-
-                        </div>
+						<div class="row">
+							<div class="file-field input-field">
+								<div class="btn teal lighten-2">
+									<i class="fa fa-cloud-upload" style="font-size:30px"></i>
+									<input id="resume" type="file">
+								</div>
+								<div class="file-path-wrapper">
+									<input id="resume-name" class="file-path validate" type="text" placeholder="Upload Resume">
+								</div>
+							</div>
+						</div>
 						<div class="row">
 							<div class="input-field col s12">
 								<input type="checkbox" id="seeking" checked={{currentUser.profile.seeking}}/>
