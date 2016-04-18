@@ -1,50 +1,53 @@
 <template name = "homeProfile">
 
-<!-- 	<div class="col s12 m2 l3"></div> -->
+	<!-- 	<div class="col s12 m2 l3"></div> -->
 	{{#if Template.subscriptionsReady}}
 	<h1 class="headbox"> {{title}} </h1>
-		<!-- <div class="col s12 m8 l6 offset-m2 offset-l3 container white-container"> -->
-		<div class="container white-container">
-			<div class="row">
-				<h5> <span class='teal-text text-lighten-2'>School:</span> {{school}}</h5> 
-			</div>
-			<div class="row">
-				<h5> <span class='teal-text text-lighten-2'>Email:</span> <a href="mailto:{{email}}">{{email}}</a></h5> 
-			</div>
-			<div class = "row">
-				<h5> <span class='teal-text text-lighten-2'>Skills:</span> {{skills}}</h5>
-			</div>
-            <div class="row">
-                <h5> <span class='teal-text text-lighten-2'>Resume:</span> {{resume}}</h5>
-            </div>
-			<div class = "row">
-				<h5> 
-					<span class='teal-text text-lighten-2'>Projects:</span>
-					{{#each projects}}
-					<a href="/project/{{this._id}}/home">{{name}}</a>
-					{{/each}}
-				</h5>
-			</div>
-			{{#if seeking}}
-			<div class = "row">
-				<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
-			</div>
-			{{else}}
-			<div class = "row">
-				<h5><span class='teal-text text-lighten-2'>Not currently looking to join a Project</span></h5>
-			</div>
-			{{/if}}
-
-			{{#if isCurrentUser}}
-			<div class = "row">
-				<a href={{editUrl}}><h5 id="edit_profile" class="waves-effect waves-light btn">Edit Profile</h5></a>
-			</div>
-			{{/if}}
+	<!-- <div class="col s12 m8 l6 offset-m2 offset-l3 container white-container"> -->
+	<div class="container white-container">
+		<div class="row">
+			<h5> <span class='teal-text text-lighten-2'>School:</span> {{school}}</h5> 
 		</div>
+		<div class="row">
+			<h5> <span class='teal-text text-lighten-2'>Email:</span> <a href="mailto:{{email}}">{{email}}</a></h5> 
+		</div>
+		<div class = "row">
+			<h5> <span class='teal-text text-lighten-2'>Skills:</span> {{skills}}</h5>
+		</div>
+		<div class="row">
+			<h5> 
+				<span class='teal-text text-lighten-2'>Resume:</span> 
+				<a href="{{resumeUrl}}"> {{resumeShort}} </a> 
+			</h5>
+		</div>
+		<div class = "row">
+			<h5> 
+				<span class='teal-text text-lighten-2'>Projects:</span>
+				{{#each projects}}
+				<a href="/project/{{this._id}}/home">{{name}}</a>
+				{{/each}}
+			</h5>
+		</div>
+		{{#if seeking}}
+		<div class = "row">
+			<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
+		</div>
+		{{else}}
+		<div class = "row">
+			<h5><span class='teal-text text-lighten-2'>Not currently looking to join a Project</span></h5>
+		</div>
+		{{/if}}
+
+		{{#if isCurrentUser}}
+		<div class = "row">
+			<a href={{editUrl}}><h5 id="edit_profile" class="waves-effect waves-light btn">Edit Profile</h5></a>
+		</div>
+		{{/if}}
+	</div>
 	{{/if}}
 
 
-<!-- 	<div class="col s12 m2 l3"></div> -->
+	<!-- 	<div class="col s12 m2 l3"></div> -->
 
 
 </template>

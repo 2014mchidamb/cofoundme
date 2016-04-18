@@ -4,12 +4,12 @@ if(Meteor.isClient)
 	var user;
 	var projects;
 	var userId;
+	var resume;
 
 	Template.homeProfile.onCreated(function(){
 		var self = this;
 		self.autorun(function(){
 			userId = self.data.id;
-			console.log(userId);
 			self.subscribe("userById", userId,
 				function() {
 					user = Meteor.users.find({_id:userId}).fetch()[0];
@@ -18,6 +18,10 @@ if(Meteor.isClient)
 			self.subscribe("projectsByUser", userId,
 				function(){
 					projects = Projects.find({owner:userId}).fetch();
+				});
+			self.subscribe("resumeByUser", userId,
+				function(){
+					resume = Resumes.find({owner:userId}).fetch();
 				});
 		});
 	});
@@ -46,7 +50,10 @@ if(Meteor.isClient)
 		'skills':function(){
 			return user.profile.skills;
 		},
-        'resume':function(){
+		'resumeShort':function(){
+			return user.profile.resume.substring(user.profile.resume.lastIndexOf("/")+1);
+		},
+        'resumeUrl':function(){
             return user.profile.resume;
         },
 		'seeking':function(){
