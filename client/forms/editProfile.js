@@ -42,6 +42,10 @@ Template.editProfile.helpers({
 		if(!Meteor.user())
 			return false;
 		return Meteor.user()._id === userId;
+	},
+	'resumeName':function(){
+		console.log(Meteor.user());
+		return Meteor.user().profile.resume.substring(Meteor.user().profile.resume.lastIndexOf("/")+1);
 	}
 });
 
