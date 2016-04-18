@@ -10,14 +10,22 @@ Template.editProfile.events({
 		var school = event.target.school.value;
 		var skills = event.target.skills.value;
 		var seeking = event.target.seeking.checked;
-        var resume = event.target.resume.value;
-		Meteor.call("editUser", name, school, skills, seeking, resume, function(error, result){
+		Modules.client.uploadToS3({event:event, file:event.target.resume.files[0], collection:"resume"}, function(resumeUrl, error){
 			if(error)
 				console.log(error);
-			else
-				Router.go('/profile/'+userId+'/home');
+			else{
+				Meteor.call("editUser", name, school, skills, seeking, resumeUrl, function(error, result){
+					if(error)
+						console.log(error);
+					else{
+						console.log("done");
+						Router.go('/profile/'+userId+'/home');
+					}
+				});	
+			}
 		});
-		
+
+
 	}
 
 });
