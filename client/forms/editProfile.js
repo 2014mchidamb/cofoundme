@@ -1,4 +1,5 @@
 var userId;
+var resumeChanged = false;
 Template.editProfile.created = function(){
 	userId = this.data.id;
 };
@@ -6,9 +7,11 @@ Template.editProfile.created = function(){
 Template.editProfile.events({
 	'change #resume': function(event, template){
 		event.preventDefault();
-		var resume_name = template.find("#resume-name");
-		if(event.target.files[0])
-			resume_name.value = event.target.files[0].name;
+		var resumeName = template.find("#resume-name");
+		if(event.target.files[0]){
+			resumeName.value = event.target.files[0].name;
+			resumeChanged = true;
+		}
 
 	},
 	'submit form': function(event) {
@@ -17,20 +20,31 @@ Template.editProfile.events({
 		var school = event.target.school.value;
 		var skills = event.target.skills.value;
 		var seeking = event.target.seeking.checked;
-		Modules.client.uploadToS3({event:event, file:event.target.resume.files[0], collection:"resume"}, function(resumeUrl, error){
-			if(error)
-				console.log(error);
-			else{
-				Meteor.call("editUser", name, school, skills, seeking, resumeUrl, function(error, result){
-					if(error)
-						console.log(error);
-					else{
-						console.log("done");
-						Router.go('/profile/'+userId+'/home');
-					}
-				});	
-			}
-		});
+		if(resumeChanged){
+			Modules.client.uploadToS3({event:event, file:event.target.resume.files[0], collection:"resume"}, function(resumeUrl, error){
+				if(error)
+					console.log(error);
+				else{
+					Meteor.call("editUser", name, school, skills, seeking, resumeUrl, function(error, result){
+						if(error)
+							console.log(error);
+						else{
+							Router.go('/profile/'+userId+'/home');
+						}
+					});	
+				}
+			});
+		}
+		else {
+			Meteor.call("editUser", name, school, skills, seeking, Meteor.user().profile.resume, function(error, result){
+				if(error)
+					console.log(error);
+				else{
+					Router.go('/profile/'+userId+'/home');
+				}
+			});	
+
+		}
 
 
 	}
