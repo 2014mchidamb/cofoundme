@@ -1,4 +1,8 @@
 Template.home.onRendered(function(){
+	 $(document).ready(function() {
+        $('select').material_select();
+    });
+
 	var select = document.getElementById("schools");
 	var options = ["University of Virginia"]; // TODO: load a list of schools from db
 	for(var i = 0; i < options.length; i++) {
