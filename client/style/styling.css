@@ -1,7 +1,18 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 .navpad {
 	margin-left: 40px;
 	margin-right: 40px;
 }
+
 
 .headbox {
 	text-align: center;
@@ -55,9 +66,9 @@
 
 
 .white-container2 {
-    background: #FFFFFF;
-    border: 1px solid #AEEBE5;
-    margin-top: 60px;
+  background: #FFFFFF;
+  border: 1px solid #AEEBE5;
+  margin-top: 60px;
 }
 
 #particles-js {
