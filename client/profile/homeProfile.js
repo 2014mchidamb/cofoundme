@@ -1,6 +1,5 @@
 if(Meteor.isClient)
 {
-
 	var user;
 	var projects;
 	var userId;
