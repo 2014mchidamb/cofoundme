@@ -1,4 +1,4 @@
-
+var uploader;
 var upload = function(options, callback) {
 	var file = options.file;
 	_uploadFiletoAmazon(file, options.collection, callback);
@@ -6,8 +6,14 @@ var upload = function(options, callback) {
 
 };
 
+var progress = function(){
+	if(!uploader)
+		return 0;
+	return uploader.progress();
+};
+
 var _uploadFiletoAmazon = function(file, collection, callback) {
-	const uploader = new Slingshot.Upload("resumeUploads");
+	uploader = new Slingshot.Upload("resumeUploads");
 	uploader.send(file, function(error, url){
 		if(error){
 			console.log(error.message);
@@ -28,3 +34,4 @@ var _addUrlToDatabase = function(url, collection){
 };
 
 Modules.client.uploadToS3 = upload;
+Modules.client.uploadToS3Progress = progress;

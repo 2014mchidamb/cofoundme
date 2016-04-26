@@ -28,27 +28,24 @@ Template.editProfile.events({
 					Meteor.call("editUser", name, school, skills, seeking, resumeUrl, function(error, result){
 						if(error)
 							console.log(error);
-						else{
+						else
 							Router.go('/profile/'+userId+'/home');
-						}
+						
 					});	
 				}
 			});
 		}
+		// If resume wasn't changed
 		else {
 			Meteor.call("editUser", name, school, skills, seeking, Meteor.user().profile.resume, function(error, result){
 				if(error)
 					console.log(error);
-				else{
+				else
 					Router.go('/profile/'+userId+'/home');
-				}
+			
 			});	
-
 		}
-
-
 	}
-
 });
 
 Template.editProfile.helpers({
@@ -58,8 +55,11 @@ Template.editProfile.helpers({
 		return Meteor.user()._id === userId;
 	},
 	'resumeName':function(){
-		console.log(Meteor.user());
 		return Meteor.user().profile.resume.substring(Meteor.user().profile.resume.lastIndexOf("/")+1);
+	},
+	'progress':function(){
+		console.log(Math.round(Modules.client.uploadToS3Progress()) );
+		return Math.round(Modules.client.uploadToS3Progress() *100);
 	}
 });
 
