@@ -55,6 +55,10 @@ if(Meteor.isClient)
         'resumeUrl':function(){
             return user.profile.resume;
         },
+        'profilePicture':function(){
+        	console.log(user.profile.picture);
+        	return user.profile.picture;
+        },
 		'seeking':function(){
 			return user.profile.seeking;
 		},
