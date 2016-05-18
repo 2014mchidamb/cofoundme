@@ -13,13 +13,16 @@ var progress = function(){
 };
 
 var _uploadFiletoAmazon = function(file, collection, callback) {
-	uploader = new Slingshot.Upload("resumeUploads");
+	if(collection === "resumes")
+		uploader = new Slingshot.Upload("resumeUploader");
+	if(collection === "images")
+		uploader = new Slingshot.Upload("imageUploader")
 	uploader.send(file, function(error, url){
 		if(error){
 			console.log(error.message);
 		}
 		else{
-			_addUrlToDatabase(url, collection);
+			//_addUrlToDatabase(url, collection);
 			callback(url);
 		}
 	});
