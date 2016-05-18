@@ -1,6 +1,6 @@
 if(Meteor.isServer)
 {
-  Slingshot.createDirective("resumeUploads", Slingshot.S3Storage,{
+  Slingshot.createDirective("resumeUploader", Slingshot.S3Storage,{
     bucket: "projectyle-resumes",
     acl:"public-read",
     // TODO
@@ -19,6 +19,21 @@ if(Meteor.isServer)
 
   });
 
+  Slingshot.createDirective("imageUploader", Slingshot.S3Storage,{
+    bucket:"projectyle-images",
+    acl:"public-read",
+    authorize:function(){
+      if(!this.userId){
+        throw new Meteor.Error("Please login first");
+      }
+      return true;
+    },
+    key: function(file){
+      var user = Meteor.users.findOne(this.userId);
+      return user.emails[0].address+"/"+file.name;
+    }
+
+  });
 
   SearchSource.defineSource('talents', function(searchText, options){
     var options = {sort: {isoScore: -1}, limit: 20};
