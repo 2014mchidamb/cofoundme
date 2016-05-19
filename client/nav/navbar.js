@@ -1,4 +1,3 @@
-
 Template.navbar.events = {
 	'click #signin': function(event) {
 		event.preventDefault();

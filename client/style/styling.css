@@ -8,13 +8,23 @@ main {
   flex: 1 0 auto;
 }
 
+
+option{width: auto;}
+
 .navpad {
 	margin-left: 40px;
 	margin-right: 40px;
 }
 
-.img-round{
+.profile-picture{
+  display: inline-block;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
 }
 
 .headbox {
