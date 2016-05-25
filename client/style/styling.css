@@ -11,6 +11,10 @@ main {
 
 option{width: auto;}
 
+ul{
+  vertical-align: middle;
+}
+
 .navpad {
 	margin-left: 40px;
 	margin-right: 40px;
@@ -24,6 +28,13 @@ option{width: auto;}
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+
+}
+.profile-picture-small{
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  margin-right:5px;
 
 }
 
