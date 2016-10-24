@@ -11,8 +11,17 @@ main {
 
 option{width: auto;}
 
+input{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 ul{
   vertical-align: middle;
+}
+
+.row{
+  margin-bottom: 5px;
 }
 
 .navpad {
@@ -81,11 +90,19 @@ ul{
 	margin-right: 5px;
 }
 
+.row-padded {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
 
 .white-container {
 	background: #FFFFFF; 
 	border: 1px solid #AEEBE5;
   width:60%;
+  padding-left:  10px;
+  padding-right: 10px;
 }
 
 
@@ -93,6 +110,8 @@ ul{
   background: #FFFFFF;
   border: 1px solid #AEEBE5;
   margin-top: 60px;
+  padding-left:  22.5px;
+  padding-right: 22.5px;
 }
 
 #particles-js {
@@ -138,3 +157,5 @@ ul{
 .package .name {
   font-weight: 400;
 }
+
+
