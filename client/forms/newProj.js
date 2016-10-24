@@ -6,24 +6,27 @@ var options = {
 var data = [];
 var names = [];
 var cofounders_add = [];
+var cofoundersDep = new Tracker.Dependency();
 var members_add = [];
-var school = "";
+var membersDep = new Tracker.Dependency();
+var school = "University of Virginia"; //change in the future
 
-function generateChip(name, id, linked, toAppend){
-    $("#"+toAppend+"-chips").append(function(){
-        var $div = $("<div>").addClass("chip").html(name);
-        var $icon = $("<i>").addClass("material-icons").html("close").attr('id', toAppend+"-"+id);
-        if(linked){
-            var imgUrl = getImage(id);
-            if(imgUrl){
-                var $img = $("<img>").attr({
-                    src: imgUrl
-                });
-                $div.append($img);
-            }
-        }
-        return $div.append($icon);
-    });
+function generateChip(name, id, toAssign){
+    var person = {name: name};
+    if(id){
+        person.id = id;
+        var img = getImage(id);
+        if(img)
+            person.img = img;
+    }
+    if(toAssign === "cofounders") {
+        cofounders_add.push(person);
+        cofoundersDep.changed();
+    }
+    else {
+        members_add.push(person);
+        membersDep.changed();
+    }
 
 }
 function getImage(id){
@@ -68,11 +71,7 @@ Template.newProj.onRendered(function(){
         $("#cofounders, #members").autocomplete({
             source: names,
             select: function(event, selected){
-                generateChip(selected.item.value, selected.item.id, true, event.target.id);
-                if(event.target.id === "cofounders")
-                    cofounders_add.push({name:selected.item.value, id:selected.item.id});
-                else if(event.target.id === "members")
-                    members_add.push({name:selected.item.value, id:selected.item.id});
+                generateChip(selected.item.value, selected.item.id, event.target.id);
                 $(this).val("");
                 event.preventDefault();
 
@@ -100,6 +99,22 @@ Template.newProj.onRendered(function(){
 });
 
 Template.newProj.events({
+    "keydown #cofounders": function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            var text = event.target.value.trim();
+            generateChip(text, null, "cofounders");
+            $(event.target).val("");
+        }
+    },
+    "keydown #members": function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            var text = event.target.value.trim();
+            generateChip(text, null, "members");
+            $(event.target).val("");
+        }
+    },
     "keyup #cofounders": _.throttle(function(event){
         var text = $(event.target).val().trim();
         if(text)
@@ -131,8 +146,9 @@ Template.newProj.events({
         event.preventDefault();
         var projname = event.target.proj_name.value;
         var url = event.target.proj_link.value;
-        if(url.length > 3 && url.indexOf("http") == -1)
+        if(url.length > 3 && url.indexOf("http://") == -1) {
             url = "http://" + url;
+        }
         var projdesc = event.target.desc.value;
         var projneeds = event.target.needs.value;
         var private = event.target.private.checked;
@@ -143,6 +159,18 @@ Template.newProj.events({
             else
                 Router.go("/project/"+id+"/home");
         });
+    }
+
+});
+
+Template.newProj.helpers({
+    'cofounders': function() {
+        cofoundersDep.depend();
+        return cofounders_add;
+    },
+    'members': function() {
+        membersDep.depend();
+        return members_add;
     }
 
 });

@@ -6,51 +6,81 @@
 
 		<div class='container white-container'>
 			<form class="edit_proj">
-				<div class="row">
+				<div class="row-padded">
 					<div class="col s12">
-						<div class="row">
+						<div class="row-padded">
 							<div class="input-field col s12">
 								<input id="name" type="text" required value={{name}}>
 								<label for="name" class="active"> Name </label>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row-padded">
 							<div class="input-field col s12">
 								<input id="desc" type="text" value={{desc}}>
 								<label for="desc" class="active"> Description </label>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row-padded">
 							<div class="input-field col s12">
 								<input id="url" type="text" value={{url}}>
 								<label for="url" class="active"> URL </label>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row-padded">
 							<div class="input-field col s12">
-								<input id="cofounders" type="text" value={{cofounders}}>
-								<label for="cofounders" class={{cofounder_activate}}>Cofounders</label>
+								<input id="cofounders" type="text" value="">
+								<label for="cofounders">Cofounders</label>
 							</div>
 						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<input id="members" type="text" value={{members}}>
-								<label for="members" class={{members_activate}}>Members</label>
+						<div class="row-padded">
+							<div id="cofounders-chips" class="col s12">
+							{{#each cofounders}}
+								<div class = chip>
+								{{#if this.img}}
+									<img src="{{this.img}}">
+								{{/if}}
+								{{this.name}}
+								<i class="material-icons" id="cofounders-{{this.id}}">close</i>
+								</div>
+							{{/each}}
 							</div>
 						</div>
-						<div class="row">
+						<div class="row-padded">
+							<div class="input-field col s12">
+								<input id="members" type="text" value="">
+								<label for="members">Members</label>
+							</div>
+						</div>
+						<div class="row-padded">
+							<div class="col s12" id="members-chips">
+							{{#each members}}
+								<div class = chip>
+								{{#if this.img}}
+									<img src="{{this.img}}">
+								{{/if}}
+								{{this.name}}
+								{{#if this.id}}
+									<i class="material-icons" id="members-{{this.id}}">close</i>
+								{{else}}
+									<i class="material-icons" id="members-unreg-{{this.name}}">close</i>
+								{{/if}}
+								</div>
+							{{/each}}
+							</div>
+						</div>
+						<div class="row-padded">
                             <div class="input-field col s12">
                                 <textarea id="needs" class="materialize-textarea" value={{needs}}></textarea>
                                 <label for="needs"> Project Needs </label>
                             </div>
                         </div>
-						<div class="row">
+						<div class="row-padded">
 							<div class="input-field col s12">
-								<input type="checkbox" id="private" checked={{private}}/>
+								<input type="checkbox" id="private" {{private}}/>
 								<label for="private">Private Project (invisible to unapproved users)</label>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row-padded" style="padding-top: 10px;">
 							<button class="btn waves-effect waves-light" type="submit" name="action" style='center'>Submit
 							</button>
 						</div>
@@ -59,12 +89,12 @@
 			</form>
 		</div>
 		{{else}}
-		<div class="row">
+		<div class="row-padded">
 			<h4> You need to login or do not have permissions to view this page!</h4>
 		</div>
 		{{/if}}
 		{{else}}
-		Loading...
+			Loading...
 		{{/if}}
 	</div>
 </template>

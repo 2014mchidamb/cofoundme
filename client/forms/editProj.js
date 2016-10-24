@@ -1,93 +1,258 @@
-if(Meteor.isClient)
-{
-	var proj;
-	var sub;
-	var projId;
-	var cofounders_index = 0;
-	var cofounders_length = 0;
-	var members_index = 0;
-	var members_length = 0;
-	// TODO: add private proj permissions checking
-	Template.editProj.onCreated(function(){
-		var self = this;
-		self.autorun(function(){
-			projId = self.data.id;
-			self.subscribe("projectById", projId, function() {
-				proj = Projects.find({_id:projId}).fetch()[0];
+var fields = ['name'];
+var options = {
+	keepHistory: 1000 * 60 * 5,
+	localSearch: true
+};
+var data = [];
+var names = [];
+var proj;
+var projId;
+var projectSub;
+var cofounders_add = [];
+var cofoundersDep = new Tracker.Dependency();
+var members_add = [];
+var membersDep = new Tracker.Dependency();
 
-			});
+function addUserToArray(name, id, toAssign){
+	var person = {name: name};
+	if(id){
+		person.id = id;
+		var img = getImage(id);
+		if(img)
+			person.img = img;
+	}
+	if(toAssign === "cofounders") {
+		cofounders_add.push(person);
+		cofoundersDep.changed();
+	}
+	else {
+		members_add.push(person);
+		membersDep.changed();
+	}
+
+}
+function getImage(id){
+	for(var i = 0; i < data.length; i++){
+		if(data[i]._id === id) {
+			return data[i].profile.picture;
+		}
+	}
+	return null;
+}
+
+function initializeNamesToArray(items, toAssign) {
+	for (var i = 0; i < items.length; i++) {
+		item = items[i];
+		if (item.length !== 0) {
+			// All members and cofounders arrays should store JSON, but incase some legacy (string) data slips by...
+			if (typeof(item) == "object" && 'id' in item) {
+				addUserToArray(item.name, item.id, toAssign);
+			}
+			else if ('name' in item) {
+				addUserToArray(item.name, null, toAssign);
+			} 
+			else {
+				addUserToArray(item, null, toAssign);
+			}
+		}
+	}
+}
+
+Template.editProj.onCreated(function(){
+	var self = this;
+	self.autorun(function(){
+		projId = self.data.id;
+		projectSub = self.subscribe("projectById", projId, function() {
+			proj = Projects.find({_id:projId}).fetch()[0];
+			if (cofounders_add.length === 0)
+				initializeNamesToArray(proj.cofounders, "cofounders");
+			if (members_add.length === 0)
+				initializeNamesToArray(proj.members, "members");
+
 		});
-		
+	});
+});
+// TODO: add private proj permissions checking
+Template.editProj.onRendered(function(){
+	TalentsSearch = new SearchSource('talents', fields, options);
+	var self = this;
+	$(document).ready(function() {
+		$('select').material_select();
 	});
 
+	self.autorun(function(){
+		data = TalentsSearch.getData({
+			transform: function(matchText, regExp){
+				return matchText.replace(regExp, "<b>$&</b>");
+			},
+			sort:{isoScore: -1}
+		});
+   		//move names into separate array for autocomplete, use data array for full user data
+   		for(var i = 0; i < data.length; i++)
+   			names[i] = {label:data[i].profile.name, value: data[i].profile.name, id:data[i]._id};
+
+   		/*
+		DOM for the form doesn't load until the subscription is ready, so wait for project to load and
+		then on the next tracker flush to interact with DOM elements. 
+		*/
+		if (projectSub && projectSub.ready()) {
+			Tracker.afterFlush(function() {
+				$(function(){
+					$("#cofounders, #members").autocomplete({
+						source: names,
+						select: function(event, selected){
+							addUserToArray(selected.item.value, selected.item.id, event.target.id);
+							// if(event.target.id === "cofounders")
+							// 	cofounders_add.push({name:selected.item.value, id:selected.item.id, img: getImage(selected.item.id)});
+							// else if(event.target.id === "members")
+							// 	members_add.push({name:selected.item.value, id:selected.item.id, img: getImage(selected.item.id)});
+							$(this).val("");
+							event.preventDefault();
+
+						}
+					}).data("ui-autocomplete")._renderItem = function(ul, item){
+						var $li = $('<li>');
+						var $img = $('<img>');
+						var imgUrl = getImage(item.id);
+						$li.append('<a href=#>');
+						if(imgUrl){
+							$img.attr({
+								src:imgUrl,
+								class:"profile-picture-small"
+							});
+							$li.find('a').append($img);
+						}
+						$li.attr('data-value', item.label);
+						$li.find('a').append(item.label);
+						return $li.appendTo(ul);
+					};
+
+
+				});
+			});
+		}
+	});
 	
-	Template.editProj.helpers({
-		name: function() {	
-			return proj.name;
-		},
-		desc: function(){
-			return proj.desc;
-		},
-		needs: function() {
-			return proj.needs;
-		},
-		url: function() {
-			return proj.url;
-		},
-		cofounders: function(){
-			return proj.cofounders;
-		},
-		cofounder_activate: function(){
-			if(proj.cofounders)
-				return "active";
-			return "";
-		},
-		members: function(){
-			return proj.members;
-		},
-		members_activate: function(){
-			if(proj.members)
-				return "active";
-			return "";
-		},
-		project: function(){
-			return proj;
-		},
-		isOwner: function(){
+
+});
+
+Template.editProj.events({
+	"keydown #cofounders": function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			var text = event.target.value.trim();
+			addUserToArray(text, null, "cofounders");
+			$(event.target).val("");
+		}
+	},
+	"keydown #members": function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			var text = event.target.value.trim();
+			addUserToArray(text, null, "members");
+			$(event.target).val("");
+		}
+	},
+	"keyup #cofounders": _.throttle(function(event){
+
+		var text = event.target.value.trim();
+		if(text)
+			TalentsSearch.search(text);        
+	}),
+	"keyup #members":_.throttle(function(event){
+		var text = event.target.value.trim();
+		if(text)
+			TalentsSearch.search(text);
+	}),
+	"click .material-icons": function(event){
+        //type-id e.g cofounders-D9NXuMNxMGjPhEqp2
+        var split = event.target.id.split("-");
+        var arr = eval(split[0]+"_add");
+        var index = -1;
+        for(var i = 0; i < arr.length; i++){
+        	if(arr[i].id === split[1]){
+        		index = i;
+        		break;
+        	}
+        }
+        if(index > -1)
+        	arr.splice(index, 1);
+    },
+    //id, projname, url, school, cofounders, members, projdesc, needs, private
+    "submit form": function(event){
+    	event.preventDefault();
+    	var t = event.target;
+    	var name = t.name.value;
+    	var url = t.url.value;
+    	var desc = t.desc.value;
+    	var needs = t.needs.value;
+		//TODO
+		//var school = t.school.value;
+		var school = "University of Virginia";
+		var cofounders = cofounders_add;
+		var members = members_add;
+		var private = t.private.value;
+		Meteor.call('editProj', projId, name, url, school, cofounders, members, desc, needs, private, function(error, result){
+			if(error)
+				console.log(error);
+			else {
+				Router.go("/project/"+projId+"/home");
+			}
+		});
+
+	}
+
+});
+
+Template.editProj.helpers({
+	name: function() {	
+		return proj.name;
+	},
+	desc: function(){
+		return proj.desc;
+	},
+	needs: function() {
+		return proj.needs;
+	},
+	url: function() {
+		return proj.url;
+	},
+	cofounders: function(){
+		cofoundersDep.depend();
+		return cofounders_add;
+	},
+	cofounder_activate: function(){
+		if(cofounders_add)
+			return "active";
+		return "";
+	},
+	members: function(){
+		membersDep.depend();
+		return members_add;
+	},
+	members_activate: function(){
+		if(members_add)
+			return "active";
+		return "";
+	},
+	project: function(){
+		return proj;
+	},
+	isOwner: function(){
+		if(proj){
 			if(!Meteor.user())
 				return false;
 			return proj.owner === Meteor.user()._id;
-		},
-		editUrl: function(){
-			return '/project/'+projId+'/edit';
-		},
-		needs: function(){
-			return proj.needs;
 		}
-	});
-	//id, projname, url, school, cofounders, members, projdesc, needs, private
-	Template.editProj.events({
-		"submit form": function(event){
-			event.preventDefault();
-			var t = event.target;
-			var name = t.name.value;
-			var url = t.url.value;
-			var desc = t.desc.value;
-			console.log(t.desc);
-			var needs = t.needs.value;
-			//TODO
-			//var school = t.school.value;
-			var school = "University of Virginia";
-			var cofounders = t.cofounders.value;
-			var members = t.members.value;
-			var private = t.private.value;
-			Meteor.call('editProj', projId, name, url, school, cofounders, members, desc, needs, private, function(error, result){
-				if(error)
-					console.log(error);
-				else
-					Router.go("/project/"+projId+"/home");
-			});
+		return false;
+	},
+	editUrl: function(){
+		return '/project/'+projId+'/edit';
+	},
+	private: function(){
+		if(proj.private)
+			return "checked";
+		return;
+	}
+});
 
-		}
-	});
-}
