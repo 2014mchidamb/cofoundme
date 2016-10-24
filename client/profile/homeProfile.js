@@ -56,7 +56,6 @@ if(Meteor.isClient)
             return user.profile.resume;
         },
         'profilePicture':function(){
-        	console.log(user.profile.picture);
         	return user.profile.picture;
         },
 		'seeking':function(){

@@ -9,23 +9,23 @@
 	</div>
 	<!-- <div class="col s12 m8 l6 offset-m2 offset-l3 container white-container"> -->
 	<div class="container white-container">
-		<div class="row">
+		<div class="row-padded">
 			<h5> <span class='teal-text text-lighten-2'>School:</span> {{school}}</h5> 
 		</div>
-		<div class="row">
+		<div class="row-padded">
 			<h5> <span class='teal-text text-lighten-2'>Email:</span> <a href="mailto:{{email}}">{{email}}</a></h5> 
 		</div>
-		<div class = "row">
+		<div class = "row-padded">
 			<h5> <span class='teal-text text-lighten-2'>Skills:</span> {{skills}}</h5>
 		</div>
-		<div class="row">
+		<div class="row-padded">
 			<h5> 
 				<span class='teal-text text-lighten-2'>Resume:</span> 
 				<a href="{{resumeUrl}}"> {{resumeShort}} </a> 
 			</h5>
 		</div>
 
-		<div class = "row">
+		<div class = "row-padded">
 			<h5> 
 				<span class='teal-text text-lighten-2'>Projects:</span>
 				{{#each projects}}
@@ -34,17 +34,17 @@
 			</h5>
 		</div>
 		{{#if seeking}}
-		<div class = "row">
+		<div class = "row-padded">
 			<h5><span class='teal-text text-lighten-2'>Looking to Join a Project</span></h5>
 		</div>
 		{{else}}
-		<div class = "row">
+		<div class = "row-padded">
 			<h5><span class='teal-text text-lighten-2'>Not currently looking to join a Project</span></h5>
 		</div>
 		{{/if}}
 
 		{{#if isCurrentUser}}
-		<div class = "row">
+		<div class = "row-padded">
 			<a href={{editUrl}}><h5 id="edit_profile" class="waves-effect waves-light btn">Edit Profile</h5></a>
 		</div>
 		{{/if}}
