@@ -88,9 +88,9 @@ if(Meteor.isServer)
 
 
   function buildRegExp(searchText) {
-  // this is a dumb implementation
-  var parts = searchText.trim().split(/[ \-\:]+/);
-  return new RegExp("(" + parts.join('|') + ")", "ig");
+    // this is a dumb implementation
+    var parts = searchText.trim().split(/[ \-\:]+/);
+    return new RegExp("(" + parts.join('|') + ")", "ig");
 }
 
 Accounts.onCreateUser(function(option, user)
