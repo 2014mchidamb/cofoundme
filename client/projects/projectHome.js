@@ -15,10 +15,22 @@ if(Meteor.isClient)
 		
 	});
 
-	Template.homeProfile.events = {
+	Template.projectHome.events = {
 		'click #edit_project': function(event) {
 			event.preventDefault();
 			Router.go('/project/'+projId+'/edit');
+		},
+		'click #delete_project': function(event) {
+			$('#modal_delete').openModal();
+		},
+		'click #confirm_delete_project': function(event) {
+			Meteor.call("deleteProj", proj, function(err) {
+				if (err)
+					console.log(err);
+				else {
+					Router.go('/'+Meteor.user().profile.school);
+				}
+			});
 		}
 	};
 
@@ -39,13 +51,16 @@ if(Meteor.isClient)
 		project: function(){
 			return proj;
 		},
+		cofounders: function() {
+			return proj.cofounders;
+		},
+		members: function() {
+			return proj.members;
+		},
 		isOwner: function(){
 			if(!Meteor.user())
 				return false;
 			return proj.owner === Meteor.user()._id;
-		},
-		editUrl: function(){
-			return '/project/'+projId+'/edit';
 		}
 	});
 }

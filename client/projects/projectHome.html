@@ -2,40 +2,79 @@
 	{{#if Template.subscriptionsReady}}
 	<h1 id="title" class="headbox">{{title}}</h1> 
 	<div class="container white-container" >
-		<div class="row">
-			<h5> <span class='teal-text text-lighten-2'>Description:</span> {{project.desc}} </h5> 
+		<div class="row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>Description:</span> {{project.desc}} </h5> 
+			</div>
 		</div>
-		<div class="row">
-			<h5> <span class='teal-text text-lighten-2'>Website:</span> <a href={{project.url}}>{{project.url}}</a> </h5>
+		<div class="row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>Website:</span> <a href={{project.url}}>{{project.url}}</a> </h5>
+			</div>
 		</div>
-		<div class="row">
-			<h5> <span class='teal-text text-lighten-2'>Needs:</span> {{project.needs}} </h5>
+		<div class="row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>Needs:</span> {{project.needs}} </h5>
+			</div>
 		</div>
-		<div class="row">
-			<h5> <span class='teal-text text-lighten-2'>School:</span> {{project.school}} </h5> 
+		<div class="row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>School:</span> {{project.school}} </h5> 
+			</div>
 		</div>
-		<div class="row">
-			<h5> <span class='teal-text text-lighten-2'>Created By: </span><a href="/profile/{{project.owner}}/home"> {{project.ownerName}} </a> </h5>
+		<div class="row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>Created By: </span><a href="/profile/{{project.owner}}/home"> {{project.ownerName}} </a> </h5>
+			</div>
 		</div>
-		<div class = "row">
-			<h5> <span class='teal-text text-lighten-2'>CoFounders:</span>
-				{{#each project.cofounders}}
-					<a href="/profile/{{this.id}}/home">{{this.name}}</a>
-				{{/each}}
-			</h5>
+		<div class = "row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>CoFounders:</span>
+					{{#each cofounders}}
+						{{#if this.id}}
+							<a href="/profile/{{this.id}}/home">{{this.name}}</a>
+						{{else}}
+							{{this.name}}
+						{{/if}}
+					{{/each}}
+				</h5>
+			</div>
 		</div>
-		<div class = "row">
-			<h5> <span class='teal-text text-lighten-2'>Members:</span>
-				{{#each project.members}}
-					<a href="/profile/{{this.id}}/home">{{this.name}}</a>
-				{{/each}}</h5>
+		<div class = "row-padded">
+			<div class="col s12">
+				<h5> <span class='teal-text text-lighten-2'>Members:</span>
+					{{#each members}}
+						{{#if this.id}}
+							<a href="/profile/{{this.id}}/home">{{this.name}}</a>
+						{{else}}
+							{{this.name}}
+						{{/if}}
+					{{/each}}</h5>
+				</div>
 			</div>
 
 			{{#if isOwner}}
-			<div class = "row">
-				<h5><a href={{editUrl}} id="edit_project" class="waves-effect waves-light btn">Edit Project</a></h5>
+			<div class = "row-padded">
+				<div class="col s12">
+					<h5>
+						<div id="edit_project" class="waves-effect waves-light btn">Edit Project</div>
+						<div id="delete_project" class="waves-effect waves-light btn modal-trigger">Delete Project</div>
+					</h5>
+				</div>
 			</div>
+
+			<div id="modal_delete" class="modal">
+				<div class="modal-content">
+					<h4> Are you sure you want to delete this project? </h4>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" id="confirm_delete_project" class=" modal-action modal-close waves-effect waves-green btn-flat">Confirm</a>
+					<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+				</div>
+			</div>
+
 			{{/if}}
+
 		</div>
 
 		{{else}}
