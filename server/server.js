@@ -40,7 +40,8 @@ if(Meteor.isServer)
     if(searchText){
       var regExp = buildRegExp(searchText);
       var selector = {$or: [
-        {"profile.name":regExp}
+        {"profile.name":regExp},
+        {"profile.skills":regExp}
         ]};
 
         return Meteor.users.find(selector, options).fetch();
