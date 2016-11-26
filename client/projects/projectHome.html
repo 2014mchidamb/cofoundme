@@ -1,6 +1,6 @@
 <template name="projectHome">
 	{{#if Template.subscriptionsReady}}
-	<h1 id="title" class="headbox">{{title}}</h1> 
+	<h3 id="title" class="headbox">{{title}}</h3> 
 	<div class="container white-container" >
 		<div class="row-padded">
 			<div class="col s12">
@@ -29,7 +29,7 @@
 		</div>
 		<div class = "row-padded">
 			<div class="col s12">
-				<h5> <span class='teal-text text-lighten-2'>CoFounders:</span>
+				<h5> <span class='teal-text text-lighten-2'>Cofounders:</span>
 					{{#each cofounders}}
 						{{#if this.id}}
 							<a href="/profile/{{this.id}}/home">{{this.name}}</a>

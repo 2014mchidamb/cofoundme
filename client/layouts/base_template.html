@@ -1,17 +1,18 @@
 <template name = "base_template">
+	<link rel="icon" sizes="16x16 32x32" href="/favicon.ico?v=2">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<div id="wrapper">
 		{{> navbar}}
 		<body>
-			<div id="particles-js" style = "z-index:-1"></div>
+			<div id="particles-js" style="z-index:-1"></div>
 			<div id="page-content-wrapper">
 				<div class="container-fluid">
 					{{> yield}}
 				</div>
 			</div>
 		</body>
-		<!-- {{> footer}} -->
+		{{> footer}}
 	</div>
 
 </template>

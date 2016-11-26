@@ -1,5 +1,6 @@
 if (Meteor.isClient) {
   Template.base_template.rendered = function () {
+      document.title = "Projectyle";
        $(document).ready(function() {
         $('select').material_select();
      });

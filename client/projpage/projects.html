@@ -1,5 +1,5 @@
 <template name="projectsHeader">
-  Ongoing projects at <b>{{schoolname}}</b>
+  <h4>Ongoing projects at <b>{{schoolname}}</b></h4>
 </template>
 
 <template name="projects">
@@ -13,9 +13,9 @@
     {{#each getProjects}}
     <div class="row">
       <div class="package">
-        <h4 class="name">
+        <h5 class="name">
           <a href="/project/{{_id}}/home" target="_blank">{{name}}</a> by <a href="/profile/{{owner}}/home">{{ownerName}}</a>
-        </h4>
+        </h5>
         <div class="description">
           {{{desc}}}
         </div>

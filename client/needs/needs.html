@@ -1,5 +1,5 @@
 <template name="needsHeader">
-  Resources Needed at <b>{{schoolname}}</b> 
+  <h4>Resources Needed at <b>{{schoolname}}</b> </h4>
 </template>
 
 <template name="needs">
@@ -12,9 +12,9 @@
 
     {{#each getNeeds}}
     <div class="package">
-      <h4 class="name">
+      <h5 class="name">
         <a href="/project/{{_id}}/home" target="_blank">{{name}}</a> needs <b>{{needs}}</b>
-      </h4>
+      </h5>
       <div class="description">
         {{desc}}
       </div>

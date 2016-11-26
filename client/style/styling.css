@@ -1,7 +1,5 @@
 body {
-  display: flex;
   min-height: 100vh;
-  flex-direction: column;
 }
 
 main {
@@ -28,6 +26,7 @@ ul{
 	margin-left: 40px;
 	margin-right: 40px;
 }
+
 
 .profile-picture{
   display: inline-block;
@@ -93,8 +92,8 @@ ul{
 .row-padded {
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 .white-container {
@@ -112,6 +111,12 @@ ul{
   margin-top: 60px;
   padding-left:  22.5px;
   padding-right: 22.5px;
+}
+
+.promo-container {
+  color: white;
+  text-align:center;
+  vertical-align: middle;
 }
 
 #particles-js {
@@ -132,6 +137,7 @@ ul{
 #search-box {
   padding: 10px;
   width: 600px;
+  height: 20px;
   border: 1px solid #eee;
   outline: 0;
   font-size: 15px;

@@ -1,5 +1,5 @@
 <template name="talentsHeader">
-  Student Talent at <b>{{schoolname}}</b> 
+  <h4>Student Talent at <b>{{schoolname}}</b> </h4>
 </template>
 
 <template name="talents">
@@ -12,9 +12,9 @@
 
     {{#each getTalents}}
     <div class="package">
-      <h4 class="name">
+      <h5 class="name">
         <a href="/profile/{{_id}}/home" target="_blank">{{profile.name}}</a> 
-      </h4>
+      </h5>
       <div id="skills">
         {{profile.skills}}
       </div>

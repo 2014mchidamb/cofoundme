@@ -1,6 +1,6 @@
 <template name="search_template">
   <div class="container white-container2">
-    <div id="heading"> <h1> {{>searchHeader}} </h1> </div>
+    <div id="heading"> {{>searchHeader}} </div>
     {{> searchBox }}
     {{> searchResult}}
   </div>
@@ -11,7 +11,7 @@
 </template>
 
 <template name="searchBox">
-  <input type="text" id="search-box" placeholder="search here" />
+  <input type="text" id="search-box" placeholder="search here"/>
 </template>
 
 <template name="searchResult">
