@@ -2,3 +2,7 @@
 mup.json
 packages/
 settings.json
+letsencrypt/
+priv.key
+ssl.crt
+letsencrypt*
