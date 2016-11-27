@@ -54,6 +54,11 @@ ul{
 	margin-bottom: 40px;
 }
 
+.large-icon {
+  font-size: 72px !important;
+
+}
+
 .formhead {
 	text-align: center;
 	color: #4db6ac;
