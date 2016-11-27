@@ -9,10 +9,11 @@ Template.navbar.events = {
 	},
 	'click #logo': function(event) {
 		event.preventDefault();
-		if(!Meteor.userId())
-			Router.go('/');
-		else
-			Router.go('/'+Meteor.user().profile.school);
+		Router.go("/");
+		// if(!Meteor.userId())
+		// 	Router.go('/');
+		// else
+		// 	Router.go('/'+Meteor.user().profile.school);
 	},
 	'click #signout': function(event) {
 		event.preventDefault();
