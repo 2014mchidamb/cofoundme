@@ -68,22 +68,26 @@ if(Meteor.isServer)
       }
     });
 
+  // if a project has no needs, make sure it's not returned
   SearchSource.defineSource('needs', function(searchText, options) {
     var options = {sort: {isoScore: -1}, limit: 20};
-
     if(searchText) {
       var regExp = buildRegExp(searchText);
-      var selector = {$or: [
-        {name: regExp},
-        {desc: regExp},
-        {needs: regExp},
-        {username: regExp},
-        {ownerName: regExp}
-        ]};
+      var selector = 
+      {$and: [
+          {needs:{$ne:""}}, 
+          {$or: [
+            {name: regExp},
+            {desc: regExp},
+            {needs: regExp},
+            {username: regExp},
+            {ownerName: regExp}
+          ]}
+      ]};
 
         return Projects.find(selector, options).fetch();
       } else {
-        return Projects.find({}, options).fetch();
+        return Projects.find({needs:{$ne:""}}, options).fetch();
       }
     });
 
