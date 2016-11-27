@@ -3,15 +3,16 @@ var options = {
 	keepHistory: 1000 * 60 * 5,
 	localSearch: true
 };
-var data = [];
-var names = [];
 var proj;
 var projId;
 var projectSub;
+var data = [];
+var names = [];
 var cofounders_add = [];
-var cofoundersDep = new Tracker.Dependency();
 var members_add = [];
+var cofoundersDep = new Tracker.Dependency();
 var membersDep = new Tracker.Dependency();
+var loadedAutoComplete = false;
 
 function addUserToArray(name, id, toAssign){
 	var person = {name: name};
@@ -90,49 +91,88 @@ Template.editProj.onRendered(function(){
    		//move names into separate array for autocomplete, use data array for full user data
    		for(var i = 0; i < data.length; i++)
    			names[i] = {label:data[i].profile.name, value: data[i].profile.name, id:data[i]._id};
-
+   		
    		/*
 		DOM for the form doesn't load until the subscription is ready, so wait for project to load and
 		then on the next tracker flush to interact with DOM elements. 
 		*/
-		if (projectSub && projectSub.ready()) {
+		if (!loadedAutoComplete && projectSub && projectSub.ready()) {
 			Tracker.afterFlush(function() {
+				loadedAutoComplete = true;
 				$(function(){
-					$("#cofounders, #members").autocomplete({
-						source: names,
-						select: function(event, selected){
-							addUserToArray(selected.item.value, selected.item.id, event.target.id);
-							// if(event.target.id === "cofounders")
-							// 	cofounders_add.push({name:selected.item.value, id:selected.item.id, img: getImage(selected.item.id)});
-							// else if(event.target.id === "members")
-							// 	members_add.push({name:selected.item.value, id:selected.item.id, img: getImage(selected.item.id)});
-							$(this).val("");
-							event.preventDefault();
+			        // set autocomplete
+			        $("#cofounders").autocomplete({
+			        	source: names,
+			        	select: function(event, selected){
+			        		generateChip(selected.item.value, selected.item.id, event.target.id);
+			        		$(this).val("");
+			        		event.preventDefault();
 
-						}
-					}).data("ui-autocomplete")._renderItem = function(ul, item){
-						var $li = $('<li>');
-						var $img = $('<img>');
-						var imgUrl = getImage(item.id);
-						$li.append('<a href=#>');
-						if(imgUrl){
-							$img.attr({
-								src:imgUrl,
-								class:"profile-picture-small"
-							});
-							$li.find('a').append($img);
-						}
-						$li.attr('data-value', item.label);
-						$li.find('a').append(item.label);
-						return $li.appendTo(ul);
-					};
+			        	}
+			        }).data("uiAutocomplete")._renderItem = function(ul, item){
+			        	var $li = $('<li>');
+			        	var $img = $('<img>');
+			        	var imgUrl = getImage(item.id);
+			        	$li.append('<a href=#>');
+			        	if(imgUrl){
+			        		$img.attr({
+			        			src:imgUrl,
+			        			class:"profile-picture-small"
+			        		});
+			        		$li.find('a').append($img);
+			        	}
+			        	$li.attr('data-value', item.label);
+			        	$li.find('a').append(item.label);
+			        	return $li.appendTo(ul);
+			        };
 
+			        $("#members").autocomplete({
+			        	source: names,
+			        	select: function(event, selected){
+			        		generateChip(selected.item.value, selected.item.id, event.target.id);
+			        		$(this).val("");
+			        		event.preventDefault();
 
-				});
+			        	}
+			        }).data("uiAutocomplete")._renderItem = function(ul, item){
+			        	var $li = $('<li>');
+			        	var $img = $('<img>');
+			        	var imgUrl = getImage(item.id);
+			        	$li.append('<a href=#>');
+			        	if(imgUrl){
+			        		$img.attr({
+			        			src:imgUrl,
+			        			class:"profile-picture-small"
+			        		});
+			        		$li.find('a').append($img);
+			        	}
+			        	$li.attr('data-value', item.label);
+			        	$li.find('a').append(item.label);
+			        	return $li.appendTo(ul);
+			        };
+
+			        // save default state 
+			        var renderCofounders = $("#cofounders").autocomplete('instance')._renderMenu;
+			        var renderMembers = $("#members").autocomplete('instance')._renderMenu;
+			        $("#cofounders").autocomplete('instance')._renderMenu = function(ul, items) {
+			        	items.push({
+			        		label: "Press enter to add name",
+			        		value: ""
+			        	});
+			        	renderCofounders.call(this, ul, items);
+			        };
+			        $("#members").autocomplete('instance')._renderMenu = function(ul, items) {
+			        	items.push({
+			        		label: "Press enter to add name",
+			        		value: ""
+			        	});
+			        	renderMembers.call(this, ul, items);
+			        };         
+			    });
 			});
 		}
+
 	});
-	
 
 });
 
