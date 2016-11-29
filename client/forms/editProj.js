@@ -104,7 +104,7 @@ Template.editProj.onRendered(function(){
 			        $("#cofounders").autocomplete({
 			        	source: names,
 			        	select: function(event, selected){
-			        		generateChip(selected.item.value, selected.item.id, event.target.id);
+			        		addUserToArray(selected.item.value, selected.item.id, event.target.id);
 			        		$(this).val("");
 			        		event.preventDefault();
 
@@ -129,7 +129,7 @@ Template.editProj.onRendered(function(){
 			        $("#members").autocomplete({
 			        	source: names,
 			        	select: function(event, selected){
-			        		generateChip(selected.item.value, selected.item.id, event.target.id);
+			        		addUserToArray(selected.item.value, selected.item.id, event.target.id);
 			        		$(this).val("");
 			        		event.preventDefault();
 

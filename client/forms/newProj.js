@@ -11,7 +11,7 @@ var members_add = [];
 var membersDep = new Tracker.Dependency();
 var school = "University of Virginia"; //change in the future
 
-function generateChip(name, id, toAssign){
+function addUserToArray(name, id, toAssign){
     var person = {name: name};
     if(id){
         person.id = id;
@@ -63,7 +63,8 @@ Template.newProj.onRendered(function(){
         });
        //move names into separate array for autocomplete, use data array for full user data
        for(var i = 0; i < data.length; i++)
-        names[i] = {label:data[i].profile.name, value: data[i].profile.name, id:data[i]._id};
+         names[i] = {label:data[i].profile.name, value: data[i].profile.name, id:data[i]._id};
+
     });
 
 
@@ -72,7 +73,7 @@ Template.newProj.onRendered(function(){
         $("#cofounders").autocomplete({
             source: names,
             select: function(event, selected){
-                generateChip(selected.item.value, selected.item.id, event.target.id);
+                addUserToArray(selected.item.value, selected.item.id, event.target.id);
                 $(this).val("");
                 event.preventDefault();
 
@@ -97,7 +98,7 @@ Template.newProj.onRendered(function(){
         $("#members").autocomplete({
             source: names,
             select: function(event, selected){
-                generateChip(selected.item.value, selected.item.id, event.target.id);
+                addUserToArray(selected.item.value, selected.item.id, event.target.id);
                 $(this).val("");
                 event.preventDefault();
 
@@ -144,7 +145,7 @@ Template.newProj.events({
         if (event.keyCode === 13) {
             event.preventDefault();
             var text = event.target.value.trim();
-            generateChip(text, null, "cofounders");
+            addUserToArray(text, null, "cofounders");
             $(event.target).val("");
         }
     },
@@ -152,7 +153,7 @@ Template.newProj.events({
         if (event.keyCode === 13) {
             event.preventDefault();
             var text = event.target.value.trim();
-            generateChip(text, null, "members");
+            addUserToArray(text, null, "members");
             $(event.target).val("");
         }
     },
